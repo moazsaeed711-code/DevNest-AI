@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevNest AI - Python Code Assistant</title>
+    <link rel="stylesheet" href="DevNest Style.css">
+    <link rel="icon" type="favicon" href="C:\Users\Asus\Desktop\favicon.png">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo" onclick="showPage('home')">DevNest AI</div>
+        <ul class="nav-links">
+            <li><a onclick="showPage('home')">HOME</a></li>
+            <li><a onclick="showPage('features')">FEATURES</a></li>
+            <li><a onclick="showPage('about')">ABOUT</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Page -->
+    <section class="page-section active" id="homePage">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1>Welcome to <span class="highlight">DevNest AI</span><br>An AI-Powered Coding Assistant</h1>
+                <p>Your Gateway to Enhancing your coding experience, learn, debug, detect mistakes from your inserted code.</p>
+                <p>It focuses on the Python programming language and on optimizing and analyzing its code </p>
+                <button class="cta-button" onclick="showPage('app')">Start Analyzing</button>
+            </div>
+            
+            <div class="hero-demo">
+                <div class="demo-header">
+                    <h3>Enter your code here</h3>
+                    <button class="analyze-btn" onclick="quickAnalyze()">Analyze code</button>
+                </div>
+                <div class="code-editor-wrapper">
+                    <div class="line-numbers" id="heroLineNumbers">
+                        <span class="line-number">1</span>
+                    </div>
+                    <textarea class="code-input" id="heroCodeInput" placeholder="# Write your Python code here...
+
+                     def greet(name):
+                     print(f'Hello, {name}!')
+
+                     greet('Developer')" oninput="updateLineNumbers('hero')"></textarea>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Page -->
+    <section class="page-section" id="featuresPage">
+        <div class="features-section">
+            <div class="features-header">
+                <h1>How DevNest <span class="highlight">Helps You</span> </h1>
+                <p>DevNest combines structured rule-based analysis with optional Al explanations to provide a complete learning experience.</p>
+            </div>
+                        <div class="features-grid">
+                <!-- Feature 1: Smart Error Detection -->
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Smart Error Detection</h3>
+                    <p>Advanced algorithms combined with Pylint to detect syntax errors, undefined variables, logical issues, and potential bugs in your Python code before runtime. Catch problems early and save debugging time.</p>
+                </div>
+                
+                <!-- Feature 2: Code Complexity Analysis -->
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Code Complexity Analysis</h3>
+                    <p>Measure cyclomatic complexity, maintainability index, and receive actionable insights to improve code quality and readability. Get objective metrics with easy-to-understand letter grades (A-F).</p>
+                </div>
+                
+                <!-- Feature 3: Intelligent Suggestions -->
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Intelligent Suggestions</h3>
+                    <p>Get context-aware recommendations for code optimization, best practices, and pythonic patterns to write cleaner code. Our custom rule engine translates technical jargon into beginner-friendly advice.</p>
+                </div>
+                
+                <!-- Feature 4: AI-Powered Explanations (NEW!) -->
+                <div class="feature-card feature-highlight">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Powered Explanations</h3>
+                    <p>Go beyond error detection with intelligent AI insights. Get deep conceptual explanations of WHY errors occur, HOW Python works, and WHAT best practices to follow. Transform error messages into learning opportunities.</p>
+                </div>
+                
+                <!-- Feature 5: Line-by-Line Navigation -->
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Line-by-Line Navigation</h3>
+                    <p>Precise line numbering with visual indicators for errors, warnings, and optimizations. Click on any issue to jump directly to the problem area in your code with automatic scrolling and highlighting.</p>
+                </div>
+                
+                <!-- Feature 6: Performance Optimization -->
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Performance Optimization</h3>
+                    <p>Identify performance bottlenecks and receive suggestions for faster, more efficient code execution. Learn about list comprehensions, enumerate patterns, and other Pythonic optimizations.</p>
+                </div>
+                
+                <!-- Feature 7: Educational Feedback -->
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Educational Feedback</h3>
+                    <p>Learn as you code with detailed explanations that go beyond compiler messages, helping you understand why something is wrong and how to fix it. Perfect for beginners and self-taught developers.</p>
+                </div>
+    
+                <!-- Feature 8: Responsive Design (NEW!) -->
+                 <div class="feature-card feature-highlight">
+                    <div class="feature-icon">📱</div>
+                    <h3>Responsive Design</h3>
+                    <p>Access DevNest from any device - desktop, tablet, or mobile. Our modern responsive interface adapts seamlessly to any screen size, ensuring a consistent experience whether you're coding at your desk or on the go.</p>
+                 </div>
+            </div>
+        </div>
+
+        
+    </section>
+
+    <!-- About Page -->
+    <section class="page-section" id="aboutPage">
+        <div class="about-section">
+            <div class="about-container">
+                <div class="about-header">
+                    <h1>About DevNest AI</h1>
+                    <p>Empowering developers with intelligent code analysis</p>
+                </div>
+                
+                <div class="about-content">
+                <h2>What is DevNest AI?</h2>
+                <p>DevNest AI is an innovative Python code analysis platform designed to bridge the gap between traditional compiler feedback and human-friendly explanations. Built as a comprehensive graduation project, it combines the power of static analysis tools with advanced AI to provide developers with meaningful, educational feedback.</p>
+                
+                <p>Unlike traditional compilers that often provide cryptic error messages, DevNest AI translates technical jargon into clear, actionable guidance. Our system doesn't just tell you what's wrong—it helps you understand why it's wrong and how to fix it.</p>
+                
+                <h2>Key Differentiators</h2>
+                <ul>
+                    <li><strong>Enhanced Feedback Quality:</strong> Our custom rule-based engine transforms compiler messages into educational explanations that help you learn.</li>
+                    
+                    <li><strong>AI-Powered Insights:</strong> Beyond basic error detection, our AI explanation feature provides deep conceptual understanding of errors, Python mechanics, and best practices—helping you truly understand your code.</li>
+                    
+                    <li><strong>Multi-Layer Analysis:</strong> Combines Pylint, Radon, and custom algorithms with AI assistance for comprehensive code review.</li>
+                    
+                    <li><strong>Context-Aware Suggestions:</strong> Provides recommendations based on code context, not just generic error messages.</li>
+                    
+                    <li><strong>Visual Error Tracking:</strong> Line-by-line highlighting and navigation make it easy to locate and fix issues.</li>
+                    
+                    <li><strong>Complexity Metrics:</strong> Detailed analysis of code maintainability and complexity with actionable improvement suggestions.</li>
+                    
+                    <li><strong>Fully Responsive:</strong> Modern, mobile-friendly interface that works seamlessly across all devices—code anywhere, anytime.</li>
+                </ul>
+                
+                <h2>Technology Stack</h2>
+                <p>DevNest AI is built using modern web technologies and industry-standard Python analysis tools:</p>
+                <ul>
+                    <li><strong>Frontend:</strong> HTML, CSS (Pure CSS with Grid & Flexbox), Vanilla JavaScript</li>
+                    <li><strong>Backend:</strong> FastAPI (Python) - Modern async REST API framework</li>
+                    <li><strong>Analysis Tools:</strong> Pylint (error detection), Radon (complexity metrics)</li>
+                    <li><strong>AI Integration:</strong> Custom rule engine with optional AI model integration.</li>
+                    <li><strong>Architecture:</strong> RESTful API with three-tier analysis system</li>
+                </ul>
+                
+                <h2>Innovation</h2>
+                <p><strong>Three-Tier Intelligence System:</strong></p>
+                <ul>
+                    <li><strong>Tier 1 - Detection:</strong> Industry-standard tools (Pylint & Radon) identify technical issues</li>
+                    <li><strong>Tier 2 - Translation:</strong> Custom rule engine converts cryptic codes into beginner-friendly messages</li>
+                    <li><strong>Tier 3 - Education:</strong> AI-powered explanations provide deep conceptual understanding and learning opportunities</li>
+                </ul>
+                <p>This layered approach makes DevNest not just an error detector, but an <strong>intelligent coding tutor</strong> that helps developers learn and improve.</p>
+             </div>
+
+             <div class="mission-vision">
+                <div class="mission-card">
+                    <h3>🎯 Our Mission</h3>
+                    <p>To make Python development more accessible and educational by providing intelligent, context-aware code analysis that helps developers not just fix errors, but understand and prevent them through AI-powered insights and clear explanations.</p>
+                </div>
+                <div class="vision-card">
+                    <h3>🔮 Our Vision</h3>
+                    <p>To create a new standard for code analysis tools that prioritize developer education and understanding over simple error reporting, making quality code accessible to everyone from beginners to professionals.</p>
+                </div>
+             </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Application Page -->
+    <section class="page-section" id="appPage">
+        <div class="app-section">
+            <div class="app-container">
+                <div class="app-header">
+                    <h2>Python Code Analyzer</h2>
+                    <p>Write or paste your Python code and get instant feedback</p>
+                </div>
+
+                <div class="editor-layout">
+                    
+                    <!-- Code Editor Panel -->
+                    <div class="panel">
+                        <div class="editor-container">
+                            <div class="main-code-wrapper">
+                                <div class="line-numbers" id="mainLineNumbers">
+                                    <span class="line-number">1</span>
+                                </div>
+                                <textarea id="mainCodeEditor" placeholder="# Write or paste your Python code here...
+
+def calculate_sum(numbers):
+    total = 0
+    for num in numbers:
+        total += num
+    return total
+
+result = calculate_sum([1, 2, 3, 4, 5])
+print(f'Sum: {result}')" oninput="updateLineNumbers('main')" onclick="trackCursor()" onkeyup="trackCursor()" onmouseup="trackCursor()"></textarea>
+                            </div>
+                        </div>
+                        <div class="editor-actions">
+                            <button class="btn btn-primary" onclick="analyzeCode()">⚡ Analyze Code</button>
+                            <button class="btn btn-ai" onclick="explainWithAI()">🤖 AI Explanation</button>
+                            <button class="btn btn-secondary" onclick="clearEditor()">🗑️ Clear</button>
+                        </div>
+                    </div>
+
+                    <!-- Results Panel -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>📊 Analysis Results</h3>
+                        </div>
+                        <div class="results-container" id="resultsContainer">
+                            <div class="empty-state">
+                                <div class="empty-state-icon">🔍</div>
+                                <h3>No Analysis Yet</h3>
+                                <p>Write some Python code and click "Analyze Code" to get started</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistics Bar -->
+                <div class="stats-bar" id="statsBar" style="display: none;">
+                    <div class="stat-item">
+                        <div class="stat-icon errors">❌</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="errorCount">0</div>
+                            <div class="stat-label">Errors Found</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon warnings">⚠️</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="warningCount">0</div>
+                            <div class="stat-label">Warnings</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon optimizations">✨</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="optimizationCount">0</div>
+                            <div class="stat-label">Optimizations</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<script>
+
+
+  // ===== CURSOR TRACKING SYSTEM =====
+    let currentCursorLine = 1;
+    // Page Navigation
+    function showPage(page) {
+        document.querySelectorAll('.page-section').forEach(section => {
+            section.classList.remove('active');
+        });
+        
+        if (page === 'home') {
+            document.getElementById('homePage').classList.add('active');
+        } else if (page === 'features') {
+            document.getElementById('featuresPage').classList.add('active');
+        } else if (page === 'about') {
+            document.getElementById('aboutPage').classList.add('active');
+        } else if (page === 'app') {
+            document.getElementById('appPage').classList.add('active');
+        }
+        
+        window.scrollTo(0, 0);
+    }
+
+    // Line Numbers Update 
+    function updateLineNumbers(editorType) {
+        // Get the textarea element
+        const textarea = editorType === 'hero' 
+            ? document.getElementById('heroCodeInput')
+            : document.getElementById('mainCodeEditor');
+
+        // Get the line numbers container
+        const lineNumbersDiv = editorType === 'hero'
+            ? document.getElementById('heroLineNumbers')
+            : document.getElementById('mainLineNumbers');
+
+        // Split code by newlines to count lines
+        const lines = textarea.value.split('\n');
+        const lineCount = lines.length;
+        
+        // Generate line numbers HTML
+        let lineNumbersHtml = '';
+        for (let i = 1; i <= lineCount; i++) {
+            lineNumbersHtml += `<span class="line-number" id="line-${editorType}-${i}">${i}</span>`;
+        }
+
+          // Insert the HTML
+        lineNumbersDiv.innerHTML = lineNumbersHtml;
+
+        // Sync scrolling
+        lineNumbersDiv.scrollTop = textarea.scrollTop;
+     }
+
+
+     // ===== CURSOR TRACKING FUNCTION =====
+     function trackCursor() {
+        const textarea = document.getElementById('mainCodeEditor');
+        if (!textarea) return;
+        
+        const cursorPosition = textarea.selectionStart;
+        const textBeforeCursor = textarea.value.substring(0, cursorPosition);
+        const lineNumber = textBeforeCursor.split('\n').length;
+        
+        currentCursorLine = lineNumber;
+        updateActiveErrorHighlighting();
+     }
+
+     function updateActiveErrorHighlighting() {
+        const feedbackItems = document.querySelectorAll('.feedback-item');
+        
+        feedbackItems.forEach(item => {
+            const lineNumber = parseInt(item.dataset.line);
+            
+            // Remove cursor class from all items
+            item.classList.remove('on-cursor-line');
+            
+            // Add cursor class only to the item on current line
+            if (lineNumber === currentCursorLine) {
+                item.classList.add('on-cursor-line');
+                
+                // Update badge - add "ON LINE" badge
+                const header = item.querySelector('.feedback-header');
+                let cursorBadge = header.querySelector('.cursor-badge');
+                
+                if (!cursorBadge) {
+                    cursorBadge = document.createElement('span');
+                    cursorBadge.className = 'cursor-badge';
+                    cursorBadge.textContent = '● ON LINE';
+                    header.appendChild(cursorBadge);
+                }
+            } 
+            
+            else {
+                // Remove "ON LINE" badge from other items
+                const cursorBadge = item.querySelector('.cursor-badge');
+                if (cursorBadge) {
+                    cursorBadge.remove();
+                }
+            }
+        });
+    }
+
+
+    // Sync scroll between textarea and line numbers
+    document.addEventListener('DOMContentLoaded', function() {
+        const heroTextarea = document.getElementById('heroCodeInput');
+        const heroLineNumbers = document.getElementById('heroLineNumbers');
+        const mainTextarea = document.getElementById('mainCodeEditor');
+        const mainLineNumbers = document.getElementById('mainLineNumbers');
+        
+        if (heroTextarea && heroLineNumbers) {
+            heroTextarea.addEventListener('scroll', function() {
+                heroLineNumbers.scrollTop = heroTextarea.scrollTop;
+            });
+            updateLineNumbers('hero');
+        }
+        
+        if (mainTextarea && mainLineNumbers) {
+            mainTextarea.addEventListener('scroll', function() {
+                mainLineNumbers.scrollTop = mainTextarea.scrollTop;
+            });
+            updateLineNumbers('main');
+        }
+        
+    });
+
+    // Quick Analyze from Hero Section
+    async function quickAnalyze() {
+
+         // 1. Get the code from textarea
+        const code = document.getElementById('heroCodeInput').value;
+        
+         // 2. Validate (check if not empty)
+        if (!code.trim()) {
+            alert('Please enter some code to analyze');
+            return;
+        }
+        
+        document.getElementById('mainCodeEditor').value = code;
+        showPage('app');
+        setTimeout(() => {
+            updateLineNumbers('main');
+            analyzeCode();
+        }, 300);
+    }
+
+    // Main Analyze Function (REST API CLIENT CODE)
+    async function analyzeCode() {
+
+        // 1. Get the code from textarea
+        const code = document.getElementById('mainCodeEditor').value;
+        
+         // 2. Validate (check if not empty)
+        if (!code.trim()) {
+            alert('Please enter some code to analyze');
+            return;
+        }
+
+        const container = document.getElementById('resultsContainer');
+        const statsBar = document.getElementById('statsBar');
+        
+        // Show loading
+        container.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state-icon">⏳</div>
+                <h3>Analyzing your code...</h3>
+                <p>Please wait while we process your Python code</p>
+            </div>
+        `;
+        statsBar.style.display = 'none';
+
+        try {
+              // 4. Send code to backend API (HTTP REQUEST TO REST API)
+            console.log('=== Starting Analysis ===');
+            console.log('Code to analyze:', code);
+            
+            const response = await fetch('http://localhost:8000/api/analyze', {
+                method: 'POST', // HTTP METHOD
+                headers: {
+                    'Content-Type': 'application/json', // json data
+                }, 
+                body: JSON.stringify({ code: code }) // Request body
+            });
+
+            console.log('Response status:', response.status);
+            console.log('Response ok?:', response.ok);
+
+             // 5. Check if successful
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('Error response:', errorText);
+                throw new Error(`Server returned ${response.status}`);
+            }
+            // 6. Get the results ( HTTP RESPONSE FROM REST API)
+            const results = await response.json();
+
+
+            console.log('=== Analysis Results ===');
+            console.log('Success:', results.success);
+            console.log('Complexity:', results.complexity);
+            console.log('Feedback items:', results.feedback);
+            console.log('Feedback count:', results.feedback ? results.feedback.length : 0);
+            
+             // 7. Display results ( USE the DATA TO UPDATE UI)
+            displayResults(results);
+            
+        } catch (error) {
+            console.error('=== Analysis Error ===');
+            console.error('Error:', error);
+            
+            // 8. Show error if something went wrong
+            container.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-state-icon">❌</div>
+                    <h3>Connection Error</h3>
+                    <p style="color: #ff4757;">${error.message}</p>
+                    <p style="font-size: 14px; margin-top: 15px;">
+                        Make sure the backend server is running at http://localhost:8000
+                    </p>
+                </div>
+            `;
+        }
+    }
+
+    // Display Results - COMPLETELY UPDATED
+    function displayResults(results) {
+        console.log('=== displayResults Function Called ===');
+        console.log('Full results object:', JSON.stringify(results, null, 2));
+        
+        const container = document.getElementById('resultsContainer');
+        const statsBar = document.getElementById('statsBar');
+        
+        // Clear error highlights
+        document.querySelectorAll('.line-number').forEach(line => {
+            line.classList.remove('error-line');
+        });
+        
+        let html = '';
+        
+        // Complexity section
+        if (results.complexity) {
+            html += `
+                <div class="complexity-section">
+                    <h4>🎯 Code Complexity Analysis</h4>
+                    <div class="complexity-grid">
+                        <div class="complexity-metric">
+                            <div class="complexity-value">${results.complexity.score}</div>
+                            <div class="complexity-label">Overall Grade</div>
+                        </div>
+                        <div class="complexity-metric">
+                            <div class="complexity-value">${results.complexity.cyclomatic}</div>
+                            <div class="complexity-label">Cyclomatic</div>
+                        </div>
+                        <div class="complexity-metric">
+                            <div class="complexity-value">${results.complexity.maintainability}</div>
+                            <div class="complexity-label">Maintainability</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        let errors = 0, warnings = 0, optimizations = 0;
+        
+        // Check if there's feedback
+        if (results.feedback && Array.isArray(results.feedback) && results.feedback.length > 0) {
+            console.log('Processing', results.feedback.length, 'feedback items');
+    
+            console.log('Processing', results.feedback.length, 'feedback items');
+            
+            // Define critical error codes that prevent code execution
+                 const criticalErrorCodes = [
+                    'E0602', // undefined-variable
+                    'E0001', // syntax-error
+                    'E1101', // no-member
+                    'E0401', // import-error
+                    'E0211', // no-method-argument
+                    'E1102', // not-callable
+                    'E1120', // no-value-for-parameter
+                    'E1121'  // too-many-function-args
+            ];
+
+
+            results.feedback.forEach((item, index) => {
+                console.log(`Feedback ${index + 1}:`, item);
+                
+                const badgeClass = `badge-${item.type}`;
+                const itemClass = item.type;
+                
+                // Check 1: Is this error critical (blocks execution)?
+                const isCriticalError = criticalErrorCodes.includes(item.code);
+                
+                // Check 2: Is cursor on this line?
+                const isCursorOnLine = item.line === currentCursorLine;
+                
+                // Combine both checks for CSS classes
+                let severityClass = isCriticalError ? 'critical-error' : 'non-critical-error';
+                let cursorClass = isCursorOnLine ? 'on-cursor-line' : '';
+                
+                // Build badges
+                let severityBadge = '';
+                let cursorBadge = isCursorOnLine ? '<span class="cursor-badge">● ON LINE</span>' : '';
+                
+                if (item.type === 'error') {
+                    errors++;
+                    const errorLine = document.getElementById(`line-main-${item.line}`);
+                    if (errorLine) errorLine.classList.add('error-line');
+                    severityBadge = isCriticalError ? 
+                        '<span class="severity-badge critical">🚨 CRITICAL</span>' : 
+                        '<span class="severity-badge non-critical">⚠️ NON-CRITICAL</span>';
+                } else if (item.type === 'warning') {
+                    warnings++;
+                    severityBadge = '<span class="severity-badge warning">⚠️ WARNING</span>';
+                } else if (item.type === 'optimization') {
+                    optimizations++;
+                    severityBadge = '<span class="severity-badge optimization">💡 SUGGESTION</span>';
+                }
+                
+                html += `
+                    <div class="feedback-item ${itemClass} ${severityClass} ${cursorClass}" data-line="${item.line}" onclick="jumpToLine(${item.line})">
+                        <div class="feedback-header">
+                            <span class="feedback-badge ${badgeClass}">${item.type}</span>
+                            <span class="feedback-line">Line ${item.line}</span>
+                            ${severityBadge}
+                            ${cursorBadge}
+                        </div>
+                        <p class="feedback-message">${item.message}</p>
+                    </div>
+                `;
+            });
+        } else {
+            console.log('No feedback items - code is clean!');
+            html += `
+                <div class="feedback-item optimization">
+                    <div class="feedback-header">
+                        <span class="feedback-badge badge-optimization">✅ ALL GOOD</span>
+                    </div>
+                    <p class="feedback-message">
+                        Excellent! Your code looks clean. No errors, warnings, or optimization suggestions found.
+                        ${results.complexity && results.complexity.score === 'A' ? ' Your code has excellent complexity ratings!' : ''}
+                    </p>
+                </div>
+            `;
+        }
+        
+        container.innerHTML = html;
+        
+        // Update statistics
+        document.getElementById('errorCount').textContent = errors;
+        document.getElementById('warningCount').textContent = warnings;
+        document.getElementById('optimizationCount').textContent = optimizations;
+        statsBar.style.display = 'flex';
+        
+        console.log('Stats - Errors:', errors, 'Warnings:', warnings, 'Optimizations:', optimizations);
+        console.log('=== Display Complete ===');
+    }
+
+    // Jump to Line
+    function jumpToLine(lineNumber) {
+        const textarea = document.getElementById('mainCodeEditor');
+        const lines = textarea.value.split('\n');
+        
+        let charPosition = 0;
+        for (let i = 0; i < lineNumber - 1 && i < lines.length; i++) {
+            charPosition += lines[i].length + 1;
+        }
+        
+        textarea.focus();
+        textarea.setSelectionRange(charPosition, charPosition + (lines[lineNumber - 1]?.length || 0));
+        
+        const lineHeight = 22.4;
+        textarea.scrollTop = (lineNumber - 1) * lineHeight;
+    }
+
+    // Clear Editor
+    function clearEditor() {
+        document.getElementById('mainCodeEditor').value = '';
+        updateLineNumbers('main');
+        
+        document.getElementById('resultsContainer').innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state-icon">🔍</div>
+                <h3>No Analysis Yet</h3>
+                <p>Write some Python code and click "Analyze Code" to get started</p>
+            </div>
+        `;
+        document.getElementById('statsBar').style.display = 'none';
+        
+        document.querySelectorAll('.line-number').forEach(line => {
+            line.classList.remove('error-line');
+        });
+    }
+
+
+    // AI Explanation Function - UPDATED for Ollama
+    async function explainWithAI() {
+        
+function formatAIResponse(text) {
+    if (!text) return 'No response';
+    
+    let formatted = escapeHtml(text);
+
+     formatted = formatted.replace(/◆/g, ''); // Remove diamond
+    formatted = formatted.replace(/♦/g, ''); // Remove diamond variant
+    
+    // FIX 2: Ensure consistent emoji usage
+    formatted = formatted.replace(/🎯\s*WHAT YOUR CODE DOES/gi, 
+        '<div class="section-header">🎯 WHAT YOUR CODE DOES</div>');
+    formatted = formatted.replace(/✅\s*WHAT YOU DID WELL/gi, 
+        '<div class="section-header">✅ WHAT YOU DID WELL</div>');
+    formatted = formatted.replace(/🔧\s*HOW TO IMPROVE/gi, 
+        '<div class="section-header">🔧 HOW TO IMPROVE</div>');
+    formatted = formatted.replace(/💡\s*PRO TIP/gi, 
+        '<div class="section-header">💡 PRO TIP</div>');
+    formatted = formatted.replace(/🎓\s*KEY TAKEAWAY/gi, 
+        '<div class="section-header">🎓 KEY TAKEAWAY</div>');
+    
+    // Main section headers (🎯 WHAT YOUR CODE DOES:)
+    formatted = formatted.replace(/([🎯✅🔧🎓])\s*([A-Z\s]+):/g, 
+        '<div style="' +
+        'font-size: 20px; ' +
+        'font-weight: bold; ' +
+        'color: #5cafc0; ' +
+        'margin-top: 28px; ' +
+        'margin-bottom: 16px; ' +
+        'padding: 12px 18px; ' +
+        'background: linear-gradient(135deg, rgba(92, 175, 192, 0.15), rgba(92, 175, 192, 0.05)); ' +
+        'border-left: 5px solid #5cafc0; ' +
+        'border-radius: 8px; ' +
+        'letter-spacing: 0.5px;' +
+        '">$1 $2</div>');
+    
+    // Critical issues (🔴 CRITICAL)
+    formatted = formatted.replace(/🔴\s*CRITICAL\s*-\s*([^\n:]+):/g, 
+        '<div style="' +
+        'margin: 20px 0 15px 0; ' +
+        'padding: 15px 20px; ' +
+        'background: linear-gradient(135deg, rgba(255, 75, 75, 0.15), rgba(255, 75, 75, 0.05)); ' +
+        'border-left: 5px solid #ff4b4b; ' +
+        'border-radius: 8px;' +
+        '">' +
+        '<span style="color: #ff6b6b; font-weight: bold; font-size: 17px;">🔴 CRITICAL - $1:</span>' +
+        '</div>');
+    
+    // Warning issues (🟡 IMPROVE)
+    formatted = formatted.replace(/🟡\s*IMPROVE\s*-\s*([^\n:]+):/g, 
+        '<div style="' +
+        'margin: 20px 0 15px 0; ' +
+        'padding: 15px 20px; ' +
+        'background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 193, 7, 0.05)); ' +
+        'border-left: 5px solid #ffc107; ' +
+        'border-radius: 8px;' +
+        '">' +
+        '<span style="color: #ffd54f; font-weight: bold; font-size: 17px;">🟡 IMPROVE - $1:</span>' +
+        '</div>');
+    
+    // Pro tips (💡 PRO TIP)
+    formatted = formatted.replace(/💡\s*PRO TIP\s*-\s*([^\n:]+):/g, 
+        '<div style="' +
+        'margin: 20px 0 15px 0; ' +
+        'padding: 15px 20px; ' +
+        'background: linear-gradient(135deg, rgba(139, 195, 74, 0.15), rgba(139, 195, 74, 0.05)); ' +
+        'border-left: 5px solid #8bc34a; ' +
+        'border-radius: 8px;' +
+        '">' +
+        '<span style="color: #aed581; font-weight: bold; font-size: 17px;">💡 PRO TIP - $1:</span>' +
+        '</div>');
+    
+    // Sub-labels (What's wrong:, Why it matters:, Fix it:, etc.)
+    formatted = formatted.replace(/^(What's wrong|Why it matters|Fix it|What to change|Why|Example|Before|After):/gm,
+        '<div style="color: #7ec8e3; font-weight: 600; margin-top: 10px; margin-bottom: 5px;">$1:</div>');
+    
+    // Bullet points with dash
+    formatted = formatted.replace(/^-\s+(.+)$/gm, 
+        '<div style="margin: 8px 0 8px 25px; color: #e8e8e8; line-height: 1.6;">' +
+        '<span style="color: #5cafc0; font-weight: bold; margin-right: 8px;">•</span>' +
+        '$1' +
+        '</div>');
+    
+    // Code arrows (→)
+    formatted = formatted.replace(/→/g, 
+        '<span style="color: #5cafc0; font-weight: bold; margin: 0 8px;">→</span>');
+    
+    // Code examples in backticks
+    formatted = formatted.replace(/`([^`]+)`/g, 
+        '<code style="' +
+        'background: rgba(0, 0, 0, 0.4); ' +
+        'padding: 3px 8px; ' +
+        'border-radius: 4px; ' +
+        'color: #7ec8e3; ' +
+        'font-family: \'Courier New\', monospace; ' +
+        'font-size: 14px;' +
+        '">$1</code>');
+    
+    // Paragraphs
+    formatted = formatted.replace(/\n\n/g, '</p><p style="margin: 12px 0; line-height: 1.7; color: #e0e0e0;">');
+    formatted = '<p style="margin: 12px 0; line-height: 1.7; color: #e0e0e0;">' + formatted + '</p>';
+    
+    // Single line breaks
+    formatted = formatted.replace(/\n/g, '<br>');
+    
+    return formatted;
+}
+
+// Helper function (if not already present)
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+    // ============================================
+    // TIMING DIAGNOSTICS - Shows where delay happens
+    // ============================================
+    const timings = {
+        start: Date.now(),
+        steps: []
+    };
+    
+    function logTiming(step) {
+        const elapsed = Date.now() - timings.start;
+        timings.steps.push({ step, time: elapsed });
+        console.log(`[${elapsed}ms] ${step}`);
+    }
+    
+    console.log("\n==========================================");
+    console.log("🤖 AI EXPLANATION REQUEST STARTED");
+    console.log("==========================================");
+    logTiming("Function called");
+    
+    // Get code from editor
+    const code = document.getElementById('mainCodeEditor').value;
+    
+    if (!code.trim()) {
+        alert('Please enter some code first!');
+        return;
+    }
+    
+    logTiming("Code retrieved from editor");
+    
+    // Get button and update UI
+    const aiButton = event.target;
+    const originalText = aiButton.innerHTML;
+    aiButton.disabled = true;
+    aiButton.innerHTML = '🔄 AI is thinking...';
+    
+    logTiming("Button UI updated");
+    
+    const container = document.getElementById('resultsContainer');
+    
+    // Show loading state
+    container.innerHTML = `
+        <div class="empty-state">
+            <div class="empty-state-icon">🤖</div>
+            <h3>AI is analyzing your code...</h3>
+            <p>Using Qwen2.5-Coder 7B (this takes 2-5 seconds)</p>
+            <div class="loading-spinner"></div>
+            <div style="margin-top: 20px; font-size: 14px; color: rgba(255,255,255,0.7);">
+                <div id="timing-display">Sending request...</div>
+            </div>
+        </div>
+    `;
+    
+    logTiming("Loading UI displayed");
+    
+    try {
+        // Prepare request
+        const requestData = { code: code };
+        logTiming("Request data prepared");
+        
+        console.log("📤 Sending fetch request to backend...");
+        const fetchStart = Date.now();
+        
+        // Make API call
+        const response = await fetch('http://localhost:8000/api/ai-explain', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestData)
+        });
+        
+        const fetchEnd = Date.now();
+        const fetchDuration = (fetchEnd - fetchStart) / 1000;
+        
+        logTiming(`Fetch completed (took ${fetchDuration.toFixed(1)}s)`);
+        console.log(`📥 Backend responded in: ${fetchDuration.toFixed(1)} seconds`);
+        
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error("❌ Backend error response:", errorText);
+            throw new Error(`Backend error: ${response.status} - ${errorText}`);
+        }
+        
+        logTiming("Response status checked (OK)");
+        
+        // Parse JSON
+        console.log("📄 Parsing JSON response...");
+        const jsonStart = Date.now();
+        const aiResults = await response.json();
+        const jsonEnd = Date.now();
+        
+        logTiming(`JSON parsed (took ${jsonEnd - jsonStart}ms)`);
+        console.log("✅ AI Response:", {
+            model: aiResults.model,
+            responseLength: aiResults.explanation?.length || 0,
+            backendTime: aiResults.response_time
+        });
+        
+        // Prepare display HTML
+        console.log("🎨 Rendering response...");
+        const renderStart = Date.now();
+        
+      container.innerHTML = `
+    <div style="
+        background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(22, 33, 62, 0.9));
+        border-radius: 16px;
+        padding: 0;
+        margin: 25px 0;
+        border: 2px solid #5cafc0;
+        box-shadow: 0 8px 32px rgba(92, 175, 192, 0.2);
+        overflow: hidden;
+    ">
+        <!-- Header Section -->
+        <div style="
+            background: linear-gradient(135deg, rgba(92, 175, 192, 0.3), rgba(92, 175, 192, 0.15));
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid rgba(92, 175, 192, 0.4);
+        ">
+            <h3 style="
+                margin: 0;
+                color: #5cafc0;
+                font-size: 22px;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            ">
+                <span style="font-size: 28px;">🤖</span>
+                AI Code Analysis
+            </h3>
+            <span style="
+                background: linear-gradient(135deg, #5cafc0, #4a9fb0);
+                color: white;
+                padding: 8px 18px;
+                border-radius: 25px;
+                font-size: 13px;
+                font-weight: 600;
+                box-shadow: 0 4px 12px rgba(92, 175, 192, 0.3);
+                letter-spacing: 0.5px;
+            ">
+                ${aiResults.model || 'AI Model'}
+            </span>
+        </div>
+        
+        <!-- AI Response Content -->
+        <div style="
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.2);
+        ">
+            <div style="
+                background: rgba(255, 255, 255, 0.03);
+                padding: 25px;
+                border-radius: 12px;
+                border-left: 5px solid #5cafc0;
+                box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
+            ">
+                <div style="
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    font-size: 16px;
+                    line-height: 1.9;
+                    color: #e8e8e8;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">${formatAIResponse(aiResults.explanation || 'No response')}</div>
+            </div>
+        </div>
+        
+        <!-- Footer Section -->
+        <div style="
+            padding: 15px 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(92, 175, 192, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        ">
+            <div style="
+                font-size: 13px;
+                color: rgba(255, 255, 255, 0.5);
+                font-style: italic;
+            ">
+                Powered by Qwen2.5-Coder
+            </div>
+            <div style="
+                font-size: 14px;
+                color: rgba(92, 175, 192, 0.9);
+                font-weight: 500;
+            ">
+                ⏱️ Processing: ${(aiResults.response_time || 0).toFixed(1)}s
+            </div>
+        </div>
+    </div>
+`;
+        
+        const renderEnd = Date.now();
+        logTiming(`Display rendered (took ${renderEnd - renderStart}ms)`);
+        
+        const totalTime = (Date.now() - timings.start) / 1000;
+        
+        console.log("\n==========================================");
+        console.log(`✅ AI EXPLANATION COMPLETE`);
+        console.log(`📊 TOTAL TIME: ${totalTime.toFixed(1)} seconds`);
+        console.log("==========================================");
+        console.log("Breakdown:");
+        timings.steps.forEach((step, i) => {
+            const prevTime = i > 0 ? timings.steps[i-1].time : 0;
+            const stepDuration = step.time - prevTime;
+            console.log(`  ${i+1}. ${step.step}: ${stepDuration}ms`);
+        });
+        console.log("==========================================\n");
+        
+    } catch (error) {
+        logTiming(`ERROR: ${error.message}`);
+        console.error('❌ AI Error Details:', error);
+        
+        container.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state-icon">❌</div>
+                <h3>AI Service Error</h3>
+                <p style="color: #ff4757; margin-top: 15px;">${error.message}</p>
+                <div style="margin-top: 20px; font-size: 14px; text-align: left; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                    <strong>Troubleshooting:</strong><br>
+                    1. Make sure your backend is running (http://localhost:8000)<br>
+                    2. Check that Ollama is running<br>
+                    3. Verify the model is downloaded: <code>ollama list</code><br>
+                    4. Check browser console (F12) for details
+                </div>
+            </div>
+        `;
+    } finally {
+        aiButton.disabled = false;
+        aiButton.innerHTML = originalText;
+        logTiming("Button re-enabled");
+    }
+}
+
+// Helper function to escape HTML to prevent XSS
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Helper function to format AI response
+function formatAIResponse(text) {
+    // Convert markdown-style bold to HTML
+    text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    
+    // Convert newlines to <br>
+    text = text.replace(/\n/g, '<br>');
+    
+    // Wrap in pre tag for formatting
+    return `<div style="white-space: pre-wrap; font-family: 'Segoe UI', sans-serif; line-height: 1.8; font-size: 15px;">${text}</div>`;
+}
+
+// Display AI Explanation (placeholder function)
+function displayAIExplanation(aiResults) {
+    const container = document.getElementById('resultsContainer');
+    
+    let html = `
+        <div class="ai-explanation-section">
+            <div class="ai-header">
+                <h4>🤖 AI Code Explanation</h4>
+                <span class="ai-badge">Powered by AI</span>
+            </div>
+            
+            <div class="ai-content">
+                <div class="ai-section">
+                    <h5>📝 Summary</h5>
+                    <p>${aiResults.summary || 'AI analysis of your code...'}</p>
+                </div>
+                
+                <div class="ai-section">
+                    <h5>💡 Key Insights</h5>
+                    <ul>
+                        ${aiResults.insights ? aiResults.insights.map(insight => `<li>${insight}</li>`).join('') : '<li>Analyzing...</li>'}
+                    </ul>
+                </div>
+                
+                <div class="ai-section">
+                    <h5>🚀 Suggestions</h5>
+                    <p>${aiResults.suggestions || 'AI-powered suggestions...'}</p>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    container.innerHTML = html;
+}
+</script>
+    
+</body>
+</html>

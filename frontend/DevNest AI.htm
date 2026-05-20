@@ -1,0 +1,2271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevNest AI - Python Code Assistant</title>
+    <link rel="stylesheet" href="ai-feedback-styles.css">
+    <link rel="stylesheet" href="DevNest Style.css">
+    <link rel="icon" type="favicon" href="D:\AOU\THE LAST SEMESTER\TM471 ll\favicon.png">
+</head>
+<body>
+    <!-- Navigation -->
+       <nav>
+            <div class="nav-container">
+                <!-- Logo -->
+                <div class="logo" onclick="showPage('home')">DevNest AI</div>
+                
+                <!-- Navigation Links -->
+                <ul class="nav-links" id="navLinks">
+                    <!-- Home -->
+                    <li class="nav-item">
+                        <a href="#" onclick="showPage('home')">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    
+                    <!-- Analyze Code -->
+                    <li class="nav-item">
+                        <a href="#" onclick="showPage('app')">
+                            <i class="fas fa-code"></i>
+                            <span>Analyze</span>
+                        </a>
+                    </li>
+                    
+                    <!-- Features -->
+                    <li class="nav-item">
+                        <a href="history.html">
+                            <i class="fas fa-history"></i>
+                            <span>History</span>
+                        </a>
+                    </li>
+                    
+                    <!-- Resources Dropdown -->
+                    <li class="nav-item dropdown-nav" id="resourcesNav">
+                        <span class="nav-trigger" onclick="toggleDropdown('resourcesNav', event)">
+                            <i class="fas fa-book"></i>
+                            <span>Resources</span>
+                            <i class="fas fa-chevron-down arrow"></i>
+                        </span>
+                        <div class="dropdown-menu">
+                            <a href="docs.html">
+                                <i class="fas fa-file-alt"></i>
+                                Documentation
+                            </a>
+                           
+                            <a href="#" onclick="showPage('features')">
+                            <i class="fas fa-star"></i>
+                                <span>Features</span>
+                                </a>
+                            <a href="#" onclick="showPage('about'); closeDropdowns();">
+                                <i class="fas fa-info-circle"></i>
+                                About
+                            </a>
+                        </div>
+                    </li>
+                    
+                    <!-- User Account Dropdown -->
+                    <li class="nav-item dropdown-nav" id="userNav">
+                        <span class="nav-trigger" onclick="toggleDropdown('userNav', event)">
+                            <i class="fas fa-user-circle"></i>
+                            <span id="userDisplay">Guest</span>
+                            <i class="fas fa-chevron-down arrow"></i>
+                        </span>
+                        <div class="dropdown-menu">
+                            <a href="history.html">
+                                <i class="fas fa-clock"></i>
+                                My History
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" onclick="logout(); closeDropdowns();">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+    <!-- Home Page -->
+    <section class="page-section active" id="homePage">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1>Welcome to <span class="highlight">DevNest AI</span><br>An AI-Powered Coding Assistant</h1>
+                <p>Your Gateway to Enhancing your coding experience, learn, debug, detect mistakes from your inserted code.</p>
+                <p>It focuses on the Python programming language and on optimizing and analyzing its code </p>
+                <button class="cta-button" onclick="showPage('app')">Start Analyzing</button>
+            </div>
+            
+            <div class="hero-demo">
+                <div class="demo-header">
+                    <h3>Enter your code here</h3>
+                    <button class="analyze-btn" onclick="quickAnalyze()">Analyze code</button>
+                </div>
+                <div class="code-editor-wrapper">
+                    <div class="line-numbers" id="heroLineNumbers">
+                        <span class="line-number">1</span>
+                    </div>
+                    <textarea class="code-input" id="heroCodeInput" placeholder="# Write your Python code here...
+
+                     def greet(name):
+                     print(f'Hello, {name}!')
+
+                     greet('Developer')" oninput="updateLineNumbers('hero')"></textarea>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Page -->
+    <section class="page-section" id="featuresPage">
+        <div class="features-section">
+            <div class="features-header">
+                <h1>How DevNest <span class="highlight">Helps You</span> </h1>
+                <p>DevNest combines structured rule-based analysis with optional Al explanations to provide a complete learning experience.</p>
+            </div>
+                        <div class="features-grid">
+                <!-- Feature 1: Smart Error Detection -->
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Smart Error Detection</h3>
+                    <p>Advanced algorithms combined with Pylint to detect syntax errors, undefined variables, logical issues, and potential bugs in your Python code before runtime. Catch problems early and save debugging time.</p>
+                </div>
+                
+                <!-- Feature 2: Code Complexity Analysis -->
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Code Complexity Analysis</h3>
+                    <p>Measure cyclomatic complexity, maintainability index, and receive actionable insights to improve code quality and readability. Get objective metrics with easy-to-understand letter grades (A-F).</p>
+                </div>
+                
+                <!-- Feature 3: Intelligent Suggestions -->
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Intelligent Suggestions</h3>
+                    <p>Get context-aware recommendations for code optimization, best practices, and pythonic patterns to write cleaner code. Our custom rule engine translates technical jargon into beginner-friendly advice.</p>
+                </div>
+                
+                <!-- Feature 4: AI-Powered Explanations -->
+                <div class="feature-card feature-highlight">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Powered Explanations</h3>
+                    <p>Go beyond error detection with intelligent AI insights. Get deep conceptual explanations of WHY errors occur, HOW Python works, and WHAT best practices to follow. Transform error messages into learning opportunities.</p>
+                </div>
+                
+                <!-- Feature 5: Line-by-Line Navigation -->
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Line-by-Line Navigation</h3>
+                    <p>Precise line numbering with visual indicators for errors, warnings, and optimizations. Click on any issue to jump directly to the problem area in your code with automatic scrolling and highlighting.</p>
+                </div>
+                
+                <!-- Feature 6: Performance Optimization -->
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Performance Optimization</h3>
+                    <p>Identify performance bottlenecks and receive suggestions for faster, more efficient code execution. Learn about list comprehensions, enumerate patterns, and other Pythonic optimizations.</p>
+                </div>
+                
+                <!-- Feature 7: Educational Feedback -->
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Educational Feedback</h3>
+                    <p>Learn as you code with detailed explanations that go beyond compiler messages, helping you understand why something is wrong and how to fix it. Perfect for beginners and self-taught developers.</p>
+                </div>
+    
+                <!-- Feature 8: Responsive Design  -->
+                 <div class="feature-card feature-highlight">
+                    <div class="feature-icon">📱</div>
+                    <h3>Responsive Design</h3>
+                    <p>Access DevNest from any device - desktop, tablet, or mobile. Our modern responsive interface adapts seamlessly to any screen size, ensuring a consistent experience whether you're coding at your desk or on the go.</p>
+                               <!-- From Uiverse.io by Nawsome --> 
+                    <div class="container">
+                        <div class="loader"></div>
+                        <div class="loader"></div>
+                        <div class="loader"></div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+
+        
+    </section>
+
+    <!-- About Page -->
+    <section class="page-section" id="aboutPage">
+        <div class="about-section">
+            <div class="about-container">
+                <div class="about-header">
+                    <h1>About DevNest AI</h1>
+                    <p>Empowering developers with intelligent code analysis</p>
+                </div>
+                
+                <div class="about-content">
+                <h2>What is DevNest AI?</h2>
+                <p>DevNest AI is an innovative Python code analysis platform designed to bridge the gap between traditional compiler feedback and human-friendly explanations. Built as a comprehensive graduation project, it combines the power of static analysis tools with advanced AI to provide developers with meaningful, educational feedback.</p>
+                
+                <p>Unlike traditional compilers that often provide cryptic error messages, DevNest AI translates technical jargon into clear, actionable guidance. Our system doesn't just tell you what's wrong—it helps you understand why it's wrong and how to fix it.</p>
+                
+                <h2>Key Differentiators</h2>
+                <ul>
+                    <li><strong>Enhanced Feedback Quality:</strong> Our custom rule-based engine transforms compiler messages into educational explanations that help you learn.</li>
+                    
+                    <li><strong>AI-Powered Insights:</strong> Beyond basic error detection, our AI explanation feature provides deep conceptual understanding of errors, Python mechanics, and best practices—helping you truly understand your code.</li>
+                    
+                    <li><strong>Multi-Layer Analysis:</strong> Combines Pylint, Radon, and custom algorithms with AI assistance for comprehensive code review.</li>
+                    
+                    <li><strong>Context-Aware Suggestions:</strong> Provides recommendations based on code context, not just generic error messages.</li>
+                    
+                    <li><strong>Visual Error Tracking:</strong> Line-by-line highlighting and navigation make it easy to locate and fix issues.</li>
+                    
+                    <li><strong>Complexity Metrics:</strong> Detailed analysis of code maintainability and complexity with actionable improvement suggestions.</li>
+                    
+                    <li><strong>Fully Responsive:</strong> Modern, mobile-friendly interface that works seamlessly across all devices—code anywhere, anytime.</li>
+                </ul>
+                
+                <h2>Technology Stack</h2>
+                <p>DevNest AI is built using modern web technologies and industry-standard Python analysis tools:</p>
+                <ul>
+                    <li><strong>Frontend:</strong> HTML, CSS (Pure CSS with Grid & Flexbox), Vanilla JavaScript</li>
+                    <li><strong>Backend:</strong> FastAPI (Python) - Modern async REST API framework</li>
+                    <li><strong>Analysis Tools:</strong> Pylint (error detection), Radon (complexity metrics)</li>
+                    <li><strong>AI Integration:</strong> Custom rule engine with optional AI model integration.</li>
+                    <li><strong>Architecture:</strong> RESTful API with three-tier analysis system</li>
+                </ul>
+                
+                <h2>Innovation</h2>
+                <p><strong>Three-Tier Intelligence System:</strong></p>
+                <ul>
+                    <li><strong>Tier 1 - Detection:</strong> Industry-standard tools (Pylint & Radon) identify technical issues</li>
+                    <li><strong>Tier 2 - Translation:</strong> Custom rule engine converts cryptic codes into beginner-friendly messages</li>
+                    <li><strong>Tier 3 - Education:</strong> AI-powered explanations provide deep conceptual understanding and learning opportunities</li>
+                </ul>
+                <p>This layered approach makes DevNest not just an error detector, but an <strong>intelligent coding tutor</strong> that helps developers learn and improve.</p>
+             </div>
+
+             <div class="mission-vision">
+                <div class="mission-card">
+                    <h3>🎯 Our Mission</h3>
+                    <p>To make Python development more accessible and educational by providing intelligent, context-aware code analysis that helps developers not just fix errors, but understand and prevent them through AI-powered insights and clear explanations.</p>
+                </div>
+                <div class="vision-card">
+                    <h3>🔮 Our Vision</h3>
+                    <p>To create a new standard for code analysis tools that prioritize developer education and understanding over simple error reporting, making quality code accessible to everyone from beginners to professionals.</p>
+                </div>
+             </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Application Page -->
+    <section class="page-section" id="appPage">
+        <div class="app-section">
+            <div class="app-container">
+                <div class="app-header">
+                    <h2>Python Code Analyzer</h2>
+                    <p>Write or paste your Python code and get instant feedback</p>
+                </div>
+
+                <div class="editor-layout">
+                    
+                    <!-- Code Editor Panel -->
+                    <div class="panel">
+                         <div class="panel-header">
+                            <h3>Code Editor</h3>
+                            <div class="header-actions">
+                                <button class="btn btn-primary btn-compact" onclick="analyzeCode()">
+                                    <i class="fas fa-search"></i>
+                                    Analyze Code
+                                </button>
+                                
+                                <button class="btn btn-ai btn-compact" onclick="explainWithAI()">
+                                    <i class="fas fa-brain"></i>
+                                    AI Explanation
+                                </button>
+                                
+                                <button class="btn btn-secondary btn-compact" onclick="clearEditor()">
+                                    <i class="fas fa-trash-alt"></i>
+                                    Clear
+                                </button>
+                            </div>
+                        </div>
+                        <div class="editor-container">
+                            <div class="main-code-wrapper">
+                                <div class="line-numbers" id="mainLineNumbers">
+                                    <span class="line-number">1</span>
+                                </div>
+                                <textarea id="mainCodeEditor" placeholder="# Write or paste your Python code here...
+
+def calculate_sum(numbers):
+    total = 0
+    for num in numbers:
+        total += num
+    return total
+
+result = calculate_sum([1, 2, 3, 4, 5])
+print(f'Sum: {result}')" oninput="updateLineNumbers('main')" onclick="trackCursor()" onkeyup="trackCursor()" onmouseup="trackCursor()"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results Panel -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>Analysis Results</h3>
+                            <div id="qualityBarContainer" class="quality-bar-header" style="display: none;">
+                                <!-- Quality bar will be inserted here by JavaScript -->
+                            </div>
+                        </div>
+                        <div class="results-container" id="resultsContainer">
+                            <div class="empty-state">
+                                <div class="empty-state-icon">🔍</div>
+                                <h3>No Analysis Yet</h3>
+                                <p>Write some Python code and click "Analyze Code" to get started</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comprehensive Analysis Summary Bar -->
+                <div class="analysis-summary-bar" id="analysisSummaryBar" style="display: none;">
+                    
+                    
+                    <div class="summary-stats">
+                        <div class="stat-item stat-error">
+                            <div class="stat-icon">🔴</div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="errorCount">0</div>
+                                <div class="stat-label">Errors</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-item stat-warning">
+                            <div class="stat-icon">🟠</div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="warningCount">0</div>
+                                <div class="stat-label">Warnings</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-item stat-convention">
+                            <div class="stat-icon">🔵</div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="conventionCount">0</div>
+                                <div class="stat-label">Conventions</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-item stat-optimization">
+                            <div class="stat-icon">🟢</div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="optimizationCount">0</div>
+                                <div class="stat-label">Optimizations</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-item stat-refactor">
+                            <div class="stat-icon">🟣</div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="refactorCount">0</div>
+                                <div class="stat-label">Refactors</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<script>
+
+   //Check if user is logged in
+   function window_onload() {
+        const token = localStorage.getItem('token');
+        const username = localStorage.getItem('username');
+        
+        if (!token) {
+            window.location.href = 'login.html';
+            return;
+        }
+        
+        // Display username
+        document.getElementById('userDisplay').textContent = `Hello, ${username}!`;
+    };
+    
+// Logout function
+function logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    window.location.href = 'login.html';
+}
+
+// Save to history after AI analysis
+async function saveToHistory(code, analysisResult, aiFeedback) {
+    const token = localStorage.getItem('token');
+    
+    try {
+        await fetch('http://localhost:8000/api/save-history', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                code: code,
+                analysis_result: JSON.stringify(analysisResult),
+                ai_feedback: aiFeedback
+                 })
+        }   );
+        } catch (error) {
+        console.error('Error saving history:', error);
+        }
+    }
+
+     // ===== CURSOR TRACKING SYSTEM =====
+    let currentCursorLine = 1;
+
+    // Page Navigation
+    function showPage(page) {
+        document.querySelectorAll('.page-section').forEach(section => {
+            section.classList.remove('active');
+        });
+        
+        if (page === 'home') {
+            document.getElementById('homePage').classList.add('active');
+        } else if (page === 'features') {
+            document.getElementById('featuresPage').classList.add('active');
+        } else if (page === 'about') {
+            document.getElementById('aboutPage').classList.add('active');
+        } else if (page === 'app') {
+            document.getElementById('appPage').classList.add('active');
+        }
+        
+        window.scrollTo(0, 0);
+    }
+
+    // Line Numbers Update 
+    function updateLineNumbers(editorType) {
+        // Get the textarea element
+        const textarea = editorType === 'hero' 
+            ? document.getElementById('heroCodeInput')
+            : document.getElementById('mainCodeEditor');
+
+        // Get the line numbers container
+        const lineNumbersDiv = editorType === 'hero'
+            ? document.getElementById('heroLineNumbers')
+            : document.getElementById('mainLineNumbers');
+
+        // Split code by newlines to count lines
+        const lines = textarea.value.split('\n');
+        const lineCount = lines.length;
+        
+        // Generate line numbers HTML
+        let lineNumbersHtml = '';
+        for (let i = 1; i <= lineCount; i++) {
+            lineNumbersHtml += `<span class="line-number" id="line-${editorType}-${i}">${i}</span>`;
+        }
+
+          // Insert the HTML
+        lineNumbersDiv.innerHTML = lineNumbersHtml;
+
+        // Sync scrolling
+        lineNumbersDiv.scrollTop = textarea.scrollTop;
+    }
+
+
+    // ===== CURSOR TRACKING FUNCTION =====
+    function trackCursor() {
+        const textarea = document.getElementById('mainCodeEditor');
+        if (!textarea) return;
+        
+        const cursorPosition = textarea.selectionStart;
+        const textBeforeCursor = textarea.value.substring(0, cursorPosition);
+        const lineNumber = textBeforeCursor.split('\n').length;
+        
+        currentCursorLine = lineNumber;
+        updateActiveErrorHighlighting();
+    }
+
+    function updateActiveErrorHighlighting() {
+        const feedbackBoxes = document.querySelectorAll('.feedback-box');
+        
+        console.log(`🎯 Updating highlighting - Cursor on line ${currentCursorLine}, Found ${feedbackBoxes.length} cards`);
+        
+        feedbackBoxes.forEach(box => {
+            const lineNumber = parseInt(box.dataset.line);
+            
+            // Remove both classes first
+            box.classList.remove('active-error', 'inactive-error');
+            
+            // Add appropriate class based on cursor position
+            if (lineNumber === currentCursorLine) {
+                box.classList.add('active-error');
+                console.log(`✅ Line ${lineNumber} - ACTIVE`);
+            } else {
+                box.classList.add('inactive-error');
+            }
+        });
+    }
+
+
+    // Sync scroll between textarea and line numbers
+    document.addEventListener('DOMContentLoaded', function() {
+        // ============================================
+        // LOAD FROM HISTORY (URL PARAMETERS)
+        // ============================================
+        const urlParams = new URLSearchParams(window.location.search);
+        const historyId = urlParams.get('history');
+        const aiHistoryId = urlParams.get('ai-history');
+        const pageParam = urlParams.get('page');
+
+        // Handle page navigation from URL parameter
+        if (pageParam) {
+            showPage(pageParam);  // Navigate to specified page (e.g., 'app')
+        }
+        
+        if (historyId) {
+            // Load analysis from history
+            loadAnalysisFromHistory(historyId);
+        } else if (aiHistoryId) {
+            // Load AI explanation from history
+            loadAIFromHistory(aiHistoryId);
+        }
+        const heroTextarea = document.getElementById('heroCodeInput');
+        const heroLineNumbers = document.getElementById('heroLineNumbers');
+        const mainTextarea = document.getElementById('mainCodeEditor');
+        const mainLineNumbers = document.getElementById('mainLineNumbers');
+        
+        if (heroTextarea && heroLineNumbers) {
+            heroTextarea.addEventListener('scroll', function() {
+                heroLineNumbers.scrollTop = heroTextarea.scrollTop;
+            });
+            updateLineNumbers('hero');
+        }
+        
+        if (mainTextarea && mainLineNumbers) {
+            mainTextarea.addEventListener('scroll', function() {
+                mainLineNumbers.scrollTop = mainTextarea.scrollTop;
+            });
+            updateLineNumbers('main');
+        }
+        
+    });
+
+    // ============================================
+    // LOAD ANALYSIS FROM HISTORY
+    // ============================================
+    async function loadAnalysisFromHistory(historyId) {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            console.log(`Loading analysis history ID: ${historyId}`);
+            
+            const response = await fetch(`http://localhost:8000/api/history/${historyId}`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            
+            if (!response.ok) {
+                throw new Error('Failed to load history');
+            }
+            
+            const data = await response.json();
+            
+            // Load code into editor
+            const editor = document.getElementById('mainCodeEditor');
+            if (editor) {
+                editor.value = data.code;
+            }
+            
+            // Display analysis results
+            if (data.analysis_result) {
+                displayResults(data.analysis_result);
+            }
+            
+            console.log('✅ Analysis loaded from history');
+            
+        } catch (error) {
+            console.error('Error loading analysis from history:', error);
+            alert('Failed to load analysis from history');
+        }
+    }
+    
+        // ============================================
+        // LOAD AI EXPLANATION FROM HISTORY
+        // ============================================
+        async function loadAIFromHistory(aiHistoryId) {
+            try {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    window.location.href = 'login.html';
+                    return;
+                }
+                
+                console.log(`Loading AI explanation ID: ${aiHistoryId}`);
+                
+                const response = await fetch(`http://localhost:8000/api/ai-history/${aiHistoryId}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to load AI explanation');
+                }
+                
+                const data = await response.json();
+
+                // Extract just the explanation text from the response
+                let explanationText = data.explanation;
+                if (typeof explanationText === 'string' && explanationText.startsWith('{')) {
+                    try {
+                        const parsed = JSON.parse(explanationText);
+                        explanationText = parsed.explanation || explanationText;
+                    } catch (e) {
+                        // If parsing fails, use as-is
+                    }
+                }
+                
+
+            
+                // Load code into editor
+                const editor = document.getElementById('mainCodeEditor');
+                if (editor) {
+                    editor.value = data.code;
+                    
+                    // Show the editor section
+                    showPage('app');
+                }
+                
+                
+                // Parse AI explanation into sections
+                const aiResults = parseAIExplanation(explanationText);
+                aiResults.model = "History";
+                
+                displayAIExplanation(aiResults);
+                
+                console.log('✅ AI explanation loaded from history');
+                
+            } catch (error) {
+                console.error('Error loading AI explanation from history:', error);
+                alert('Failed to load AI explanation from history');
+            }
+
+            function parseAIExplanation(explanationText) {
+                const result = {
+                    summary: '',
+                    insights: [],
+                    suggestions: '',
+                    response: explanationText,
+                    explanation: explanationText,
+                    sections: []  // NEW: structured sections
+                };
+                
+                if (!explanationText) return result;
+                
+                // DEBUG: Log what we're parsing
+                console.log('🔍 Parsing AI Explanation:');
+                console.log('Text length:', explanationText.length);
+                console.log('First 200 chars:', explanationText.substring(0, 200));
+
+                // Parse structured sections from AI response
+                 const sectionPatterns = [
+                    { emoji: '🎯', title: 'WHAT YOUR CODE DOES', key: 'what', alt: 'WHAT YOUR CODE DOES' },
+                    { emoji: '⚠️', title: 'ISSUES TO FIX', key: 'issues', alt: 'ISSUES TO FIX' },
+                    { emoji: '💡', title: 'STYLE IMPROVEMENTS', key: 'style', alt: 'STYLE IMPROVEMENTS' },
+                    { emoji: '🔧', title: 'HOW TO FIX', key: 'howto', alt: 'HOW TO FIX' },
+                    { emoji: '📚', title: 'LEARNING TIPS', key: 'learning', alt: 'LEARNING TIPS' },
+                    { emoji: '🔑', title: 'KEY TAKEAWAY', key: 'takeaway', alt: 'KEY TAKEAWAY' },
+                    { emoji: '⚠️', title: 'CRITICAL RULES', key: 'rules', alt: 'CRITICAL RULES' },
+                    { emoji: '✅', title: 'GOOD PRACTICES FOUND', key: 'good', alt: 'GOOD PRACTICES FOUND' }
+                ];
+                
+                // Extract each section (try with and without emoji)
+                sectionPatterns.forEach(pattern => {
+                    // Try with emoji first
+                    let regex = new RegExp(`${pattern.emoji}\\s*${pattern.title}[:\\s]+([\\s\\S]*?)(?=\\n\\n|${sectionPatterns.map(p => `(${p.emoji}\\s*${p.title}|${p.alt})`).join('|')}|$)`, 'i');
+                    let match = explanationText.match(regex);
+                    
+                    // If no match, try without emoji
+                    if (!match) {
+                        regex = new RegExp(`${pattern.alt}[:\\s]+([\\s\\S]*?)(?=\\n\\n|${sectionPatterns.map(p => `(${p.emoji}\\s*${p.title}|${p.alt})`).join('|')}|$)`, 'i');
+                        match = explanationText.match(regex);
+                    }
+                    
+                    if (match && match[1]) {
+                        result.sections.push({
+                            emoji: pattern.emoji,
+                            title: pattern.title,
+                            content: match[1].trim(),
+                            key: pattern.key
+                        });
+                    }
+                });
+                
+                // Extract summary (from first section or "WHAT YOUR CODE DOES")
+                const whatSection = result.sections.find(s => s.key === 'what');
+                if (whatSection) {
+                    result.summary = whatSection.content.substring(0, 250) + '...';
+                } else {
+                    const firstPara = explanationText.split('\n\n')[0];
+                    result.summary = firstPara.substring(0, 250);
+                }
+                
+                // Extract insights from ISSUES or first bullet points
+                const issuesSection = result.sections.find(s => s.key === 'issues');
+                if (issuesSection) {
+                    const lines = issuesSection.content.split('\n');
+                    lines.forEach(line => {
+                        if (line.match(/^[\d\.\-\*]\s+/) && line.length > 20) {
+                            const cleaned = line.replace(/^[\d\.\-\*\s]+/, '').trim();
+                            if (cleaned.length < 150) {
+                                result.insights.push(cleaned);
+                            }
+                        }
+                    });
+                }
+                
+                if (result.insights.length === 0) {
+                    result.insights = ['Review the detailed analysis for specific issues and recommendations'];
+                }
+                
+                // Extract suggestions from STYLE IMPROVEMENTS
+                const styleSection = result.sections.find(s => s.key === 'style');
+                if (styleSection) {
+                    result.suggestions = styleSection.content.substring(0, 200) + '...';
+                } else {
+                    result.suggestions = 'See detailed analysis for improvement suggestions';
+                }
+
+                 // DEBUG: Log parsed sections
+                console.log('📊 Parsed sections:', result.sections.length);
+                result.sections.forEach(s => console.log(`  - ${s.title}: ${s.content.length} chars`));
+                
+                return result;
+            }
+
+    }
+
+    // Global AbortController for cancelling AI requests
+    let aiAbortController = null;
+    let lastAnalysisResults = null;
+    let liveTrackingEnabled = false;
+    let autoAnalyzeTimeout = null;
+    let lastAnalyzedCode = '';
+
+    // Quick Analyze from Hero Section
+    async function quickAnalyze() {
+
+         // 1. Get the code from textarea
+        const code = document.getElementById('heroCodeInput').value;
+        
+         // 2. Validate (check if not empty)
+        if (!code.trim()) {
+            alert('Please enter some code to analyze');
+            return;
+        }
+        
+        document.getElementById('mainCodeEditor').value = code;
+        showPage('app');
+        setTimeout(() => {
+            updateLineNumbers('main');
+            analyzeCode();
+        }, 300);
+    }
+
+
+    
+
+    // Main Analyze Function (REST API CLIENT CODE)
+    async function analyzeCode(isAutoAnalysis = false) {
+
+        // 1. Get the code from textarea
+        const code = document.getElementById('mainCodeEditor').value;
+        
+         // 2. Validate (check if not empty)
+        if (!code.trim()) {
+            if (!isAutoAnalysis) {
+                alert('Please enter some code to analyze');
+            }
+            return;
+        }
+
+        const container = document.getElementById('resultsContainer');
+        const summaryBar = document.getElementById('analysisSummaryBar');
+        
+        // Show loading only for manual analysis
+        if (!isAutoAnalysis) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-state-icon">⏳</div>
+                    <h3>Analyzing your code...</h3>
+                    <p>Please wait while we process your Python code</p>
+                </div>
+            `;
+            summaryBar.style.display = 'none';
+        }
+
+        try {
+            const token = localStorage.getItem('token');
+            const headers = {
+                'Content-Type': 'application/json',
+            };
+            
+            if (token) {
+                headers['Authorization'] = `Bearer ${token}`;
+            }
+            
+            const response = await fetch('http://localhost:8000/api/analyze', {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify({ code: code })
+            });
+
+            console.log('Response status:', response.status);
+            console.log('Response ok?:', response.ok);
+
+            // 5. Check if successful
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('Error response:', errorText);
+                throw new Error(`Server returned ${response.status}`);
+            }
+            
+            // 6. Get the results
+            const results = await response.json();
+
+            console.log('=== Analysis Results ===');
+            console.log('Success:', results.success);
+            console.log('Complexity:', results.complexity);
+            console.log('Feedback items:', results.feedback);
+            console.log('Feedback count:', results.feedback ? results.feedback.length : 0);
+            
+            // Store results for live tracking
+            lastAnalysisResults = results;
+            lastAnalyzedCode = code;
+            
+            // Enable live tracking after first manual analysis
+            if (!isAutoAnalysis) {
+                liveTrackingEnabled = true;
+            }
+            
+            // 7. Display results
+            displayResults(results);
+            
+        } catch (error) {
+            console.error('=== Analysis Error ===');
+            console.error('Error:', error);
+            
+            // Only show error message for manual analysis
+            if (!isAutoAnalysis) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">❌</div>
+                        <h3>Connection Error</h3>
+                        <p style="color: #ff4757;">${error.message}</p>
+                        <p style="font-size: 14px; margin-top: 15px;">
+                            Make sure the backend server is running at http://localhost:8000
+                        </p>
+                    </div>
+                `;
+            }
+        }
+    }
+
+    // ============================================
+    // LIVE ERROR TRACKING FUNCTION
+    // ============================================
+    function enableLiveTracking() {
+        const codeEditor = document.getElementById('mainCodeEditor');
+        
+        // Add event listener for code changes
+        codeEditor.addEventListener('input', function() {
+            if (!liveTrackingEnabled) return;
+            
+            // Clear previous timeout
+            if (autoAnalyzeTimeout) {
+                clearTimeout(autoAnalyzeTimeout);
+            }
+            
+            // Set new timeout - auto-analyze after 2 seconds of no typing
+            autoAnalyzeTimeout = setTimeout(() => {
+                const currentCode = codeEditor.value.trim();
+                const lastCode = lastAnalyzedCode.trim();
+                
+                // Only re-analyze if code actually changed
+                if (currentCode !== lastCode && currentCode.length > 0) {
+                    console.log('🔄 Auto-analyzing due to code change...');
+                    analyzeCode(true); // true = auto analysis (silent)
+                }
+            }, 2000); // 2 second delay
+        });
+        
+        console.log('✅ Live error tracking enabled');
+    }
+    
+    // Enable live tracking when page loads
+    window.addEventListener('load', enableLiveTracking);
+
+    // Display Results - COMPLETELY UPDATED
+    
+    function displayResults(results) {
+        console.log('=== displayResults Function Called ===');
+        console.log('Full results object:', JSON.stringify(results, null, 2));
+        
+        const container = document.getElementById('resultsContainer');
+        const summaryBar = document.getElementById('analysisSummaryBar');
+        
+        // Clear error highlights
+        document.querySelectorAll('.line-number').forEach(line => {
+            line.classList.remove('error-line', 'warning-line', 'convention-line', 'optimization-line', 'refactor-line');
+        });
+        
+        let html = '';
+        
+        // ============================================
+        // COMPACT COMPLEXITY BAR (FIRST)
+        // ============================================
+        // Insert quality bar into header instead of content area
+        const qualityBarContainer = document.getElementById('qualityBarContainer');
+        if (results.complexity && qualityBarContainer) {
+            const gradeClass = `grade-${results.complexity.score.toLowerCase()}`;
+            qualityBarContainer.style.display = 'flex';
+            qualityBarContainer.innerHTML = `
+                <div class="complexity-metrics-inline">
+                    <div class="metric-inline">
+                        <div class="metric-inline-value ${gradeClass}">${results.complexity.score}</div>
+                        <div class="metric-inline-label">Grade</div>
+                    </div>
+                    <div class="metric-inline">
+                        <div class="metric-inline-value">${results.complexity.cyclomatic}</div>
+                        <div class="metric-inline-label">Cyclomatic</div>
+                    </div>
+                    <div class="metric-inline">
+                        <div class="metric-inline-value">${results.complexity.maintainability}</div>
+                        <div class="metric-inline-label">Maintainability</div>
+                    </div>
+                </div>
+            `;
+        } else if (qualityBarContainer) {
+            qualityBarContainer.style.display = 'none';
+        }
+        
+        let errors = 0, warnings = 0, conventions = 0, optimizations = 0, refactors = 0, total = 0; 
+        
+        // Check if there's feedback
+        if (results.feedback && Array.isArray(results.feedback) && results.feedback.length > 0) {
+            console.log('Processing', results.feedback.length, 'feedback items');
+            
+            // Define critical error codes
+            const criticalErrorCodes = [
+                'E0602', 'E0001', 'E1101', 'E0401', 'E0211', 'E1102', 'E1120', 'E1121'
+            ];
+
+            // ============================================
+            // SORT: ERRORS FIRST, WARNINGS, THEN OPTIMIZATIONS
+            // ============================================
+            const sortedFeedback = results.feedback.sort((a, b) => {
+                const order = { error: 1, warning: 2, optimization: 3 };
+                return order[a.type] - order[b.type];
+            });
+
+            sortedFeedback.forEach((item, index) => {
+                console.log(`Feedback ${index + 1}:`, item);
+                
+                // Determine card type
+                const cardType = item.type === 'error' ? 'error-card' : 
+                               item.type === 'warning' ? 'warning-card' : 
+                               'optimization-card';
+                
+                // Determine severity
+                const isCriticalError = criticalErrorCodes.includes(item.code);
+                const isCursorOnLine = item.line === currentCursorLine;
+                
+                // Count by type
+                const typeLower = item.type.toLowerCase();
+                
+                if (typeLower.includes('error')) {
+                    errors++;
+                    const errorLine = document.getElementById(`line-main-${item.line}`);
+                    if (errorLine) errorLine.classList.add('error-line');
+                } else if (typeLower.includes('warning')) {
+                    warnings++;
+                    const warningLine = document.getElementById(`line-main-${item.line}`);
+                    if (warningLine) warningLine.classList.add('warning-line');
+                } else if (typeLower.includes('convention')) {
+                    conventions++;
+                    const conventionLine = document.getElementById(`line-main-${item.line}`);
+                    if (conventionLine) conventionLine.classList.add('convention-line');
+                } else if (typeLower.includes('optimization')) {
+                    optimizations++;
+                    const optimizationLine = document.getElementById(`line-main-${item.line}`);
+                    if (optimizationLine) optimizationLine.classList.add('optimization-line');
+                } else if (typeLower.includes('refactor')) {
+                    refactors++;
+                    const refactorLine = document.getElementById(`line-main-${item.line}`);
+                    if (refactorLine) refactorLine.classList.add('refactor-line');
+                }
+                
+                
+                // Determine icon
+                const icon = item.type === 'error' ? 'fa-times-circle' :
+                           item.type === 'warning' ? 'fa-exclamation-triangle' :
+                           'fa-magic';
+                
+                // Use structured data if available, fallback to parsing message
+                const sections = item.structured ? 
+                    formatStructuredSections(item.structured) : 
+                    parseMessage(item.message);
+
+                 // DEBUG: Log what we're getting
+                console.log('🔍 Item data:', {
+                    hasStructured: !!item.structured,
+                    sections: sections,
+                    rawItem: item
+                });
+
+                // Additional debug - check explain content
+                if (item.structured && item.structured.sections) {
+                    console.log('📋 Structured sections from backend:', item.structured.sections);
+                    console.log('📋 Formatted sections.explain:', sections.explain);
+                    console.log('📋 Formatted sections.learn:', sections.learn);
+                    console.log('📋 Formatted sections.fix:', sections.fix);
+                    
+                    // Debug each section type
+                    item.structured.sections.forEach((section, idx) => {
+                        console.log(`  Section ${idx}: type="${section.type}", has content: ${!!section.content}`);
+                    });
+                }
+                
+                // Build card HTML
+               // Build card HTML with tabs
+                html += `
+                    <div class="feedback-box ${cardType}" data-line="${item.line}">
+                        <!-- Badge Bar -->
+                        <div class="badge-bar">
+                            <span class="type-badge ${item.type}">${item.type.toUpperCase()}</span>
+                            <span class="location">Line ${item.line}</span>
+                            ${isCriticalError ? '<span class="level critical">CRITICAL</span>' : ''}
+                        </div>
+                        
+                        <!-- Title -->
+                        <div class="box-title" onclick="jumpToLine(${item.line})">
+                            <i class="fas ${icon}"></i>
+                            <span>${sections.title || item.code || 'Code Issue'}</span>
+                        </div>
+                        
+                        <!-- Tabbed Content -->
+                        <div class="tab-container">
+                            <!-- Tab Headers -->
+                            <div class="tab-headers">
+                                ${sections.explain ? `
+                                <button class="tab-btn active" onclick="switchTab(event, this, 'explain-${index}')">
+                                    <i class="fas fa-info-circle"></i> Explain
+                                </button>` : ''}
+                                ${sections.learn ? `
+                                <button class="tab-btn ${!sections.explain ? 'active' : ''}" onclick="switchTab(event, this, 'learn-${index}')">
+                                    <i class="fas fa-lightbulb"></i> Learn
+                                </button>` : ''}
+                                ${(sections.fix || sections.wrong || sections.right) ? `
+                                <button class="tab-btn ${!sections.explain && !sections.learn ? 'active' : ''}" onclick="switchTab(event, this, 'fix-${index}')">
+                                    <i class="fas fa-wrench"></i> Fix
+                                </button>` : ''}
+                            </div>
+                            
+                            <!-- Tab Content Panels -->
+                            ${sections.explain ? `
+                            <div class="tab-content active" id="explain-${index}">
+                                <p>${sections.explain}</p>
+                            </div>` : ''}
+                            
+                            ${sections.learn ? `
+                            <div class="tab-content ${!sections.explain ? 'active' : ''}" id="learn-${index}">
+                                <div class="learn-box">
+                                    <p><strong>Key Concept:</strong> ${sections.learn}</p>
+                                </div>
+                            </div>` : ''}
+                            
+                            ${(sections.fix || sections.wrong || sections.right) ? `
+                            <div class="tab-content ${!sections.explain && !sections.learn ? 'active' : ''}" id="fix-${index}">
+                                ${sections.fix ? `<p class="fix-intro">${sections.fix}</p>` : ''}
+                                <div class="fix-grid">
+                                    ${sections.wrong ? `
+                                    <div class="fix-item wrong">
+                                        <div class="fix-label">
+                                            <i class="fas fa-times"></i> Wrong
+                                        </div>
+                                        <pre><code>${escapeHtml(sections.wrong)}</code></pre>
+                                    </div>` : ''}
+                                    
+                                    ${sections.right ? `
+                                    <div class="fix-item right ${!sections.wrong ? 'single' : ''}">
+                                        <div class="fix-label">
+                                            <i class="fas fa-check"></i> Right
+                                        </div>
+                                        <pre><code>${escapeHtml(sections.right)}</code></pre>
+                                    </div>` : ''}
+                                </div>
+                            </div>` : ''}
+                        </div>
+                        
+                       ${sections.learnMore ? `
+                        <details class="more-details">
+                            <summary><i class="fas fa-book"></i> Learn More</summary>
+                            <p>${sections.learnMore}</p>
+                        </details>` : ''}
+                        
+                        ${item.code === 'E0001' ? `
+                        <div class="syntax-error-notice">
+                            <i class="fas fa-info-circle"></i>
+                            <div>
+                                <strong>💡 Why only one error showing?</strong>
+                                <p>Syntax errors prevent Python from reading the rest of your code. Fix this syntax error first, then click "Analyze Code" again to see any other issues!</p>
+                            </div>
+                        </div>` : ''}
+                    </div>
+                `;
+            });
+         } else {
+            console.log('No feedback items - code is clean!');
+            html += `
+                <div class="feedback-box optimization-card">
+                    <!-- Badge Bar -->
+                    <div class="badge-bar">
+                        <span class="type-badge optimization">✓ ALL GOOD</span>
+                    </div>
+                    
+                    <!-- Title -->
+                    <div class="box-title">
+                        <i class="fas fa-check-circle"></i>
+                        <span>No Issues Found</span>
+                    </div>
+                    
+                    <!-- Single Tab Content (no tabs needed for success) -->
+                    <div class="tab-container">
+                        <div class="tab-content active" style="display: block;">
+                            <p>Excellent! Your code looks clean. No errors, warnings, or optimization suggestions found.</p>
+                            ${results.complexity && results.complexity.score === 'A' ? '<p>Your code has excellent complexity ratings!</p>' : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        container.innerHTML = html;
+        
+        // Update comprehensive statistics
+        document.getElementById('errorCount').textContent = errors;
+        document.getElementById('warningCount').textContent = warnings;
+        document.getElementById('conventionCount').textContent = conventions;
+        document.getElementById('optimizationCount').textContent = optimizations;
+        document.getElementById('refactorCount').textContent = refactors;
+        
+        // Show the summary bar
+        summaryBar.style.display = 'block';
+        
+        // Update active/inactive highlighting based on current cursor position
+        updateActiveErrorHighlighting();
+        
+        console.log('Stats - Errors:', errors, 'Warnings:', warnings, 'Conventions:', conventions, 'Optimizations:', optimizations, 'Refactors:', refactors);
+    }
+
+    function formatStructuredSections(structured) {
+        /**
+         * Convert structured JSON from backend into display format
+         * This replaces the need to parse message strings
+         */
+        const sections = {
+            title: structured.title || '',
+            explain: '',
+            learn: '',
+            fix: '',
+            wrong: '',
+            right: '',
+            learnMore: ''
+        };
+        
+        if (!structured.sections) return sections;
+        
+        // Process each section from backend
+        structured.sections.forEach(section => {
+            switch(section.type) {
+                case 'explain':
+                    sections.explain = section.content;
+                    break;
+                case 'fix':
+                    sections.fix = section.content;
+                    break;
+                case 'example':
+                    if (section.content.wrong) {
+                        sections.wrong = section.content.wrong;
+                    }
+                    if (section.content.right) {
+                        sections.right = section.content.right;
+                    }
+                    break;
+                case 'learn':
+                    sections.learn = section.content;
+                    break;
+            }
+        });
+        
+        return sections;
+    }
+
+    // Helper function to parse message into sections
+    function parseMessage(message) {
+        const sections = {
+            title: '',
+            explain: '',
+            learn: '',
+            fix: '',
+            wrong: '',
+            right: '',
+            learnMore: ''
+        };
+        
+        if (!message) return sections;
+        
+        // Keep message as is (with emojis)
+        let cleanMessage = message.trim();
+        
+        // Extract title (first line before EXPLAIN or newline)
+        const titleMatch = cleanMessage.match(/^([^\n]+)/);
+        if (titleMatch) {
+            sections.title = titleMatch[1]
+                .replace(/^(ERROR|WARNING|OPTIMIZATION|CONVENTION)[:\s]*/i, '')
+                .replace(/━+/g, '')  // Remove separator lines
+                .trim();
+        }
+        
+        // Extract WHAT'S WRONG section (📋 WHAT'S WRONG: ... until 🔧)
+        const explainMatch = cleanMessage.match(/📋\s*WHAT'S WRONG:\s*([\s\S]*?)(?=🔧\s*HOW TO FIX:|📝\s*EXAMPLE:|$)/i);
+        if (explainMatch) {
+            sections.explain = explainMatch[1].trim();
+        }
+        
+        // Extract HOW TO FIX section (🔧 HOW TO FIX: ... until 📝 EXAMPLE:)
+        const fixMatch = cleanMessage.match(/🔧\s*HOW TO FIX:\s*([\s\S]*?)(?=📝\s*EXAMPLE:|❌\s*WRONG:|$)/i);
+        if (fixMatch) {
+            sections.fix = fixMatch[1].trim();
+        }
+        
+        // Extract WRONG example (❌ WRONG: ... until ✅ RIGHT:)
+        const wrongMatch = cleanMessage.match(/❌\s*WRONG:\s*([\s\S]*?)(?=✅\s*RIGHT:|$)/i);
+        if (wrongMatch) {
+            sections.wrong = wrongMatch[1].trim();
+        }
+        
+        // Extract RIGHT example (✅ RIGHT: ... until 📚 LEARN MORE:)
+        const rightMatch = cleanMessage.match(/✅\s*RIGHT:\s*([\s\S]*?)(?=📚\s*LEARN MORE:|$)/i);
+        if (rightMatch) {
+            sections.right = rightMatch[1].trim();
+        }
+        
+        // Extract LEARN MORE section (📚 LEARN MORE: ... until end)
+        const learnMatch = cleanMessage.match(/📚\s*LEARN MORE:\s*([\s\S]*?)$/i);
+        if (learnMatch) {
+            sections.learn = learnMatch[1].trim();
+            sections.learnMore = learnMatch[1].trim();
+        }
+        
+        // Fallback: if no WHAT'S WRONG, use everything before HOW TO FIX
+        if (!sections.explain) {
+            const fallbackMatch = cleanMessage.match(/^([\s\S]*?)(?=🔧\s*HOW TO FIX:|$)/i);
+            if (fallbackMatch) {
+                sections.explain = fallbackMatch[1]
+                    .replace(/^([^\n]+)\n/, '') // Remove title
+                    .replace(/━+/g, '') // Remove separators
+                    .trim();
+            }
+        }
+        
+        return sections;
+    }
+
+     // Tab switching function
+    function switchTab(event, button, tabId) {
+        event.stopPropagation(); // Prevent triggering jumpToLine
+        
+        // Get parent container
+        const container = button.closest('.tab-container');
+        
+        // Remove active from all tabs and buttons in this container
+        container.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        container.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        
+        // Add active to clicked button
+        button.classList.add('active');
+        
+        // Show corresponding content
+        const content = document.getElementById(tabId);
+        if (content) {
+            content.classList.add('active');
+        }
+    }
+
+    // ============================================
+    // ESCAPE HTML HELPER
+    // ============================================
+    function escapeHtml(text) {
+        if (!text) return '';
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+    
+
+    // Format message with proper sections
+    function formatMessage(message) {
+        // Check if message has structured format
+        if (!message.includes('EXPLAIN:') && !message.includes('📋 EXPLAIN:')) {
+            return message; // Return as-is if no structure
+        }
+        
+        // Replace section headers with formatted HTML
+        let formatted = message
+            .replace(/(📋 )?EXPLAIN:/g, '<div class="msg-section"><strong>EXPLAIN:</strong>')
+            .replace(/(🔧 )?HOW TO FIX:/g, '</div><div class="msg-section"><strong>HOW TO FIX:</strong>')
+            .replace(/(📚 )?LEARN:/g, '</div><div class="msg-section"><strong>LEARN:</strong>');
+        
+        return formatted + '</div>'; // Close last section
+    }
+
+    // Jump to Line
+    function jumpToLine(lineNumber) {
+        const textarea = document.getElementById('mainCodeEditor');
+        const lines = textarea.value.split('\n');
+        
+        let charPosition = 0;
+        for (let i = 0; i < lineNumber - 1 && i < lines.length; i++) {
+            charPosition += lines[i].length + 1;
+        }
+        
+        textarea.focus();
+        textarea.setSelectionRange(charPosition, charPosition + (lines[lineNumber - 1]?.length || 0));
+        
+        const lineHeight = 22.4;
+        textarea.scrollTop = (lineNumber - 1) * lineHeight;
+    }
+
+    // Clear Editor
+    function clearEditor() {
+        // 1. Cancel any ongoing AI request
+        if (aiAbortController) {
+            console.log('🛑 Cancelling AI request from Clear button...');
+            aiAbortController.abort();
+            aiAbortController = null;
+        }
+        // Hide quality bar
+        const qualityBarContainer = document.getElementById('qualityBarContainer');
+        if (qualityBarContainer) {
+            qualityBarContainer.style.display = 'none';
+        }
+
+        // 2. Clear the code editor
+        document.getElementById('mainCodeEditor').value = '';
+        updateLineNumbers('main');
+
+        
+        // 3. Clear results
+        document.getElementById('resultsContainer').innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state-icon">🔍</div>
+                <h3>No Analysis Yet</h3>
+                <p>Write some Python code and click "Analyze Code" to get started</p>
+            </div>
+        `;
+        document.getElementById('analysisSummaryBar').style.display = 'none';
+        
+        // 4. Clear error highlights
+        document.querySelectorAll('.line-number').forEach(line => {
+            line.classList.remove('error-line', 'warning-line', 'convention-line', 'optimization-line', 'refactor-line');
+        });
+        
+        console.log('✅ Editor cleared and AI request cancelled');
+    }
+
+    // Cancel AI request WITHOUT clearing editor
+    function cancelAIRequest() {
+        if (aiAbortController) {
+            console.log('🛑 Cancelling AI request (keeping code)...');
+            aiAbortController.abort();
+            aiAbortController = null;
+            
+            // Show cancellation message
+            document.getElementById('resultsContainer').innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-state-icon">🛑</div>
+                    <h3>AI Request Cancelled</h3>
+                    <p style="color: #ffa502;">The AI explanation was cancelled. Your code is still here!</p>
+                    <p style="margin-top: 15px; font-size: 14px;">Click "Explain with AI" to try again.</p>
+                </div>
+            `;
+            
+            console.log('✅ AI cancelled, code preserved');
+        } else {
+            console.log('⚠️ No active AI request to cancel');
+        }
+    }
+
+    // AI Explanation Function - UPDATED for Ollama
+    async function explainWithAI() {
+        
+        function formatAIResponse(text) {
+        if (!text) return 'No response';
+        
+        let formatted = escapeHtml(text);
+
+        formatted = formatted.replace(/◆/g, ''); // Remove diamond
+        formatted = formatted.replace(/♦/g, ''); // Remove diamond variant
+        
+        // FIX 2: Ensure consistent emoji usage
+        formatted = formatted.replace(/🎯\s*WHAT YOUR CODE DOES/gi, 
+            '<div class="section-header">🎯 WHAT YOUR CODE DOES</div>');
+        formatted = formatted.replace(/✅\s*WHAT YOU DID WELL/gi, 
+            '<div class="section-header">✅ WHAT YOU DID WELL</div>');
+        formatted = formatted.replace(/🔧\s*HOW TO IMPROVE/gi, 
+            '<div class="section-header">🔧 HOW TO IMPROVE</div>');
+        formatted = formatted.replace(/💡\s*PRO TIP/gi, 
+            '<div class="section-header">💡 PRO TIP</div>');
+        formatted = formatted.replace(/🎓\s*KEY TAKEAWAY/gi, 
+            '<div class="section-header">🎓 KEY TAKEAWAY</div>');
+        
+        // Main section headers (🎯 WHAT YOUR CODE DOES:)
+        formatted = formatted.replace(/([🎯✅🔧🎓])\s*([A-Z\s]+):/g, 
+            '<div style="' +
+            'font-size: 20px; ' +
+            'font-weight: bold; ' +
+            'color: #5cafc0; ' +
+            'margin-top: 28px; ' +
+            'margin-bottom: 16px; ' +
+            'padding: 12px 18px; ' +
+            'background: linear-gradient(135deg, rgba(92, 175, 192, 0.15), rgba(92, 175, 192, 0.05)); ' +
+            'border-left: 5px solid #5cafc0; ' +
+            'border-radius: 8px; ' +
+            'letter-spacing: 0.5px;' +
+            '">$1 $2</div>');
+        
+        // Critical issues (🔴 CRITICAL)
+        formatted = formatted.replace(/🔴\s*CRITICAL\s*-\s*([^\n:]+):/g, 
+            '<div style="' +
+            'margin: 20px 0 15px 0; ' +
+            'padding: 15px 20px; ' +
+            'background: linear-gradient(135deg, rgba(255, 75, 75, 0.15), rgba(255, 75, 75, 0.05)); ' +
+            'border-left: 5px solid #ff4b4b; ' +
+            'border-radius: 8px;' +
+            '">' +
+            '<span style="color: #ff6b6b; font-weight: bold; font-size: 17px;">🔴 CRITICAL - $1:</span>' +
+            '</div>');
+        
+        // Warning issues (🟡 IMPROVE)
+        formatted = formatted.replace(/🟡\s*IMPROVE\s*-\s*([^\n:]+):/g, 
+            '<div style="' +
+            'margin: 20px 0 15px 0; ' +
+            'padding: 15px 20px; ' +
+            'background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 193, 7, 0.05)); ' +
+            'border-left: 5px solid #ffc107; ' +
+            'border-radius: 8px;' +
+            '">' +
+            '<span style="color: #ffd54f; font-weight: bold; font-size: 17px;">🟡 IMPROVE - $1:</span>' +
+            '</div>');
+        
+        // Pro tips (💡 PRO TIP)
+        formatted = formatted.replace(/💡\s*PRO TIP\s*-\s*([^\n:]+):/g, 
+            '<div style="' +
+            'margin: 20px 0 15px 0; ' +
+            'padding: 15px 20px; ' +
+            'background: linear-gradient(135deg, rgba(139, 195, 74, 0.15), rgba(139, 195, 74, 0.05)); ' +
+            'border-left: 5px solid #8bc34a; ' +
+            'border-radius: 8px;' +
+            '">' +
+            '<span style="color: #aed581; font-weight: bold; font-size: 17px;">💡 PRO TIP - $1:</span>' +
+            '</div>');
+        
+        // Sub-labels (What's wrong:, Why it matters:, Fix it:, etc.)
+        formatted = formatted.replace(/^(What's wrong|Why it matters|Fix it|What to change|Why|Example|Before|After):/gm,
+            '<div style="color: #7ec8e3; font-weight: 600; margin-top: 10px; margin-bottom: 5px;">$1:</div>');
+        
+        // Bullet points with dash
+        formatted = formatted.replace(/^-\s+(.+)$/gm, 
+            '<div style="margin: 8px 0 8px 25px; color: #e8e8e8; line-height: 1.6;">' +
+            '<span style="color: #5cafc0; font-weight: bold; margin-right: 8px;">•</span>' +
+            '$1' +
+            '</div>');
+        
+        // Code arrows (→)
+        formatted = formatted.replace(/→/g, 
+            '<span style="color: #5cafc0; font-weight: bold; margin: 0 8px;">→</span>');
+        
+        // Code examples in backticks
+        formatted = formatted.replace(/`([^`]+)`/g, 
+            '<code style="' +
+            'background: rgba(0, 0, 0, 0.4); ' +
+            'padding: 3px 8px; ' +
+            'border-radius: 4px; ' +
+            'color: #7ec8e3; ' +
+            'font-family: \'Courier New\', monospace; ' +
+            'font-size: 14px;' +
+            '">$1</code>');
+        
+        // Paragraphs
+        formatted = formatted.replace(/\n\n/g, '</p><p style="margin: 12px 0; line-height: 1.7; color: #e0e0e0;">');
+        formatted = '<p style="margin: 12px 0; line-height: 1.7; color: #e0e0e0;">' + formatted + '</p>';
+        
+        // Single line breaks
+        formatted = formatted.replace(/\n/g, '<br>');
+        
+        return formatted;
+        }
+
+        // Helper function (if not already present)
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // ============================================
+        // TIMING DIAGNOSTICS - Shows where delay happens
+        // ============================================
+        const timings = {
+            start: Date.now(),
+            steps: []
+        };
+        
+        function logTiming(step) {
+            const elapsed = Date.now() - timings.start;
+            timings.steps.push({ step, time: elapsed });
+            console.log(`[${elapsed}ms] ${step}`);
+        }
+        
+        console.log("\n==========================================");
+        console.log("🤖 AI EXPLANATION REQUEST STARTED");
+        console.log("==========================================");
+        logTiming("Function called");
+        
+        // Get code from editor
+        const code = document.getElementById('mainCodeEditor').value;
+        
+        if (!code.trim()) {
+            alert('Please enter some code first!');
+            return;
+        }
+        
+        logTiming("Code retrieved from editor");
+        // Cancel any previous AI request
+        if (aiAbortController) {
+            console.log('🛑 Cancelling previous AI request...');
+            aiAbortController.abort();
+        }
+        
+        // Create new AbortController for this request
+        aiAbortController = new AbortController();
+        const signal = aiAbortController.signal;
+        
+        logTiming("AbortController created");
+        
+        // Get button and update UI
+        const aiButton = event.target;
+        const originalText = aiButton.innerHTML;
+        aiButton.disabled = true;
+        aiButton.innerHTML = '🔄 AI is thinking...';
+        
+        logTiming("Button UI updated");
+        
+        const container = document.getElementById('resultsContainer');
+        
+        // Show loading state with cancel option
+        container.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state-icon">🤖</div>
+                <h3>AI is analyzing your code...</h3>
+                <p>Using Qwen2.5-Coder 1.5B</p>
+                <div class="loading-spinner"></div>
+                <div style="margin-top: 20px; font-size: 14px; color: rgba(255,255,255,0.7);">
+                    <div id="timing-display">Sending request...</div>
+                </div>
+                <button onclick="cancelAIRequest()" style="
+                    margin-top: 15px;
+                    padding: 10px 20px;
+                    background: rgba(255, 71, 87, 0.2);
+                    border: 1px solid #ff4757;
+                    border-radius: 8px;
+                    color: #ff4757;
+                    cursor: pointer;
+                    font-size: 14px;
+                    transition: all 0.3s;
+                " onmouseover="this.style.background='rgba(255, 71, 87, 0.3)'" 
+                   onmouseout="this.style.background='rgba(255, 71, 87, 0.2)'">
+                    🛑 Cancel Request
+                </button>
+            </div>
+        `;
+        
+        logTiming("Loading UI displayed");
+        
+        try {
+            // Prepare request
+            const requestData = { code: code };
+            logTiming("Request data prepared");
+            
+            console.log("📤 Sending fetch request to backend...");
+            const fetchStart = Date.now();
+            
+            // Make API call
+            const response = await fetch('http://localhost:8000/api/ai-explain', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestData),
+                signal: signal  // ✅ Add abort signal
+            });
+            
+            const fetchEnd = Date.now();
+            const fetchDuration = (fetchEnd - fetchStart) / 1000;
+            
+            logTiming(`Fetch completed (took ${fetchDuration.toFixed(1)}s)`);
+            console.log(`📥 Backend responded in: ${fetchDuration.toFixed(1)} seconds`);
+            
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error("❌ Backend error response:", errorText);
+                throw new Error(`Backend error: ${response.status} - ${errorText}`);
+            }
+            
+            logTiming("Response status checked (OK)");
+            
+            // Parse JSON
+            console.log("📄 Parsing JSON response...");
+            const jsonStart = Date.now();
+            const aiResults = await response.json();
+                // ============================================
+                // SAVE AI EXPLANATION TO HISTORY
+                // ============================================
+                try {
+                    const token = localStorage.getItem('token');
+                    if (token) {
+                        const saveResponse = await fetch('http://localhost:8000/api/ai-history', {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': `Bearer ${token}`,
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                code: code,
+                                explanation: aiResults.response || JSON.stringify(aiResults),
+                                code_summary: extractCodeSummary(code, aiResults.response || ''),
+                                topics: extractTopics(aiResults.response || '')
+                            })
+                        });
+                        
+                        if (saveResponse.ok) {
+                            console.log('✅ AI explanation saved to history');
+                        } else {
+                            console.log('⚠️ Failed to save AI explanation');
+                        }
+                    }
+                } catch (saveError) {
+                    console.error('Error saving AI explanation:', saveError);
+                }
+            const jsonEnd = Date.now();
+            
+            logTiming(`JSON parsed (took ${jsonEnd - jsonStart}ms)`);
+            console.log("✅ AI Response:", {
+                model: aiResults.model,
+                responseLength: aiResults.explanation?.length || 0,
+                backendTime: aiResults.response_time
+            });
+            
+            // Prepare display HTML
+            console.log("🎨 Rendering response...");
+            const renderStart = Date.now();
+            
+        container.innerHTML = `
+        <div style="
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(22, 33, 62, 0.9));
+            border-radius: 16px;
+            padding: 0;
+            margin: 25px 0;
+            border: 2px solid #5cafc0;
+            box-shadow: 0 8px 32px rgba(92, 175, 192, 0.2);
+            overflow: hidden;
+        ">
+            <!-- Header Section -->
+            <div style="
+                background: linear-gradient(135deg, rgba(92, 175, 192, 0.3), rgba(92, 175, 192, 0.15));
+                padding: 20px 25px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 2px solid rgba(92, 175, 192, 0.4);
+            ">
+                <h3 style="
+                    margin: 0;
+                    color: #5cafc0;
+                    font-size: 22px;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                ">
+                    <span style="font-size: 28px;">🤖</span>
+                    AI Code Analysis
+                </h3>
+                <span style="
+                    background: linear-gradient(135deg, #5cafc0, #4a9fb0);
+                    color: white;
+                    padding: 8px 18px;
+                    border-radius: 25px;
+                    font-size: 13px;
+                    font-weight: 600;
+                    box-shadow: 0 4px 12px rgba(92, 175, 192, 0.3);
+                    letter-spacing: 0.5px;
+                ">
+                    ${aiResults.model || 'AI Model'}
+                </span>
+            </div>
+            
+        <!-- AI Response Content -->
+            <div style="
+                padding: 30px;
+                background: rgba(0, 0, 0, 0.2);
+            ">
+                ${parseAndStyleAIFeedback(aiResults.explanation || 'No response')}
+
+            <!-- Footer Section -->
+            <div style="
+                padding: 15px 30px;
+                background: rgba(0, 0, 0, 0.3);
+                border-top: 1px solid rgba(92, 175, 192, 0.2);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            ">
+                <div style="
+                    font-size: 13px;
+                    color: rgba(255, 255, 255, 0.5);
+                    font-style: italic;
+                ">
+                    Powered by Qwen2.5-Coder
+                </div>
+                <div style="
+                    font-size: 14px;
+                    color: rgba(92, 175, 192, 0.9);
+                    font-weight: 500;
+                ">
+                    ⏱️ Processing: ${(aiResults.response_time || 0).toFixed(1)}s
+                </div>
+            </div>
+        </div>
+        `;
+            
+            const renderEnd = Date.now();
+            logTiming(`Display rendered (took ${renderEnd - renderStart}ms)`);
+            
+            const totalTime = (Date.now() - timings.start) / 1000;
+            
+            console.log("\n==========================================");
+            console.log(`✅ AI EXPLANATION COMPLETE`);
+            console.log(`📊 TOTAL TIME: ${totalTime.toFixed(1)} seconds`);
+            console.log("==========================================");
+            console.log("Breakdown:");
+            timings.steps.forEach((step, i) => {
+                const prevTime = i > 0 ? timings.steps[i-1].time : 0;
+                const stepDuration = step.time - prevTime;
+                console.log(`  ${i+1}. ${step.step}: ${stepDuration}ms`);
+            });
+            console.log("==========================================\n");
+
+            // Clear abort controller on success
+            aiAbortController = null;
+            logTiming("Request completed successfully");
+            
+        } catch (error) {
+            logTiming(`ERROR: ${error.message}`);
+            console.error('❌ AI Error Details:', error);
+
+
+
+            // Check if request was aborted
+            if (error.name === 'AbortError') {
+                console.log('🛑 AI request was cancelled by user');
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🛑</div>
+                        <h3>Request Cancelled</h3>
+                        <p style="color: #ffa502; margin-top: 15px;">AI explanation request was cancelled</p>
+                    </div>
+                `;
+                aiAbortController = null;
+                return;
+            }
+            
+           container.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-state-icon">❌</div>
+                    <h3>AI Service Error</h3>
+                    <p style="color: #ff4757; margin-top: 15px;">${error.message}</p>
+                    <div style="margin-top: 20px; font-size: 14px; text-align: left; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                        <strong>Troubleshooting:</strong><br>
+                        1. Make sure your backend is running (http://localhost:8000)<br>
+                        2. Check that Ollama is running<br>
+                        3. Verify the model is downloaded: <code>ollama list</code><br>
+                        4. Check browser console (F12) for details
+                    </div>
+                </div>
+            `;
+
+        } finally {
+            aiButton.disabled = false;
+            aiButton.innerHTML = originalText;
+            logTiming("Button re-enabled");
+        }
+    }
+
+    // ============================================
+    // HELPER FUNCTIONS FOR AI HISTORY
+    // ============================================
+    
+    function extractCodeSummary(code, aiText) {
+        // Try to extract from code first (first meaningful line)
+        const codeLines = code.split('\n').filter(line => {
+            const trimmed = line.trim();
+            return trimmed && !trimmed.startsWith('#') && !trimmed.startsWith('//');
+        });
+        
+        if (codeLines.length > 0) {
+            const firstLine = codeLines[0].trim();
+            if (firstLine.length > 10) {
+                return firstLine.substring(0, 100);
+            }
+        }
+        
+        // Try to extract from AI response
+        if (aiText) {
+            // Try to find "WHAT YOUR CODE DOES" section
+            const match = aiText.match(/🎯\s*WHAT YOUR CODE DOES[:\s]+(.*?)(?:\n|$)/i);
+            if (match && match[1]) {
+                return match[1].substring(0, 100);
+            }
+            
+            // Fallback: first non-empty line
+            const lines = aiText.split('\n').filter(line => line.trim());
+            if (lines.length > 0) {
+                return lines[0].substring(0, 100);
+            }
+        }
+        
+        return "Python Code Analysis";
+    }
+    
+    function extractTopics(aiText) {
+        if (!aiText) return "";
+        
+        const topics = new Set();
+        
+        // Common programming concepts to look for
+        const patterns = {
+            'Loops': /\b(loop|loops|iteration|iterate|for loop|while loop)\b/i,
+            'Functions': /\b(function|functions|method|methods|def)\b/i,
+            'Recursion': /\b(recursion|recursive)\b/i,
+            'Classes': /\b(class|classes|object|objects|OOP)\b/i,
+            'Variables': /\b(variable|variables|assignment)\b/i,
+            'Lists': /\b(array|arrays|list|lists)\b/i,
+            'Dictionaries': /\b(dictionary|dictionaries|dict|map|hash)\b/i,
+            'Error Handling': /\b(error handling|exception|try-catch|try-except)\b/i,
+            'Algorithms': /\b(algorithm|algorithms|sorting|searching)\b/i,
+            'Data Structures': /\b(data structure|data structures|stack|queue|tree)\b/i,
+            'Conditionals': /\b(if|else|elif|conditional|conditions)\b/i,
+            'Input/Output': /\b(input|output|print|read|write|file)\b/i
+        };
+        
+        for (const [topic, pattern] of Object.entries(patterns)) {
+            if (pattern.test(aiText)) {
+                topics.add(topic);
+                if (topics.size >= 3) break; // Max 3 topics
+            }
+        }
+        
+        return Array.from(topics).join(', ');
+    }
+
+    // Helper function to escape HTML to prevent XSS
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    // Helper function to format AI response
+    function formatAIResponse(text) {
+        // Convert markdown-style bold to HTML
+        text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        
+        // Convert newlines to <br>
+        text = text.replace(/\n/g, '<br>');
+        
+        // Wrap in pre tag for formatting
+        return `<div style="white-space: pre-wrap; font-family: 'Segoe UI', sans-serif; line-height: 1.8; font-size: 15px;">${text}</div>`;
+    }
+
+    // Display AI Explanation (placeholder function)
+    function displayAIExplanation(aiResults) {
+        const container = document.getElementById('resultsContainer');
+        
+        let html = `
+            <div class="ai-explanation-section">
+                <div class="ai-header">
+                    <h4>🤖 AI Code Explanation</h4>
+                    <span class="ai-badge">Powered by AI</span>
+                </div>
+                
+                <!-- Tabs Navigation -->
+                <div class="ai-tabs-nav">
+                    <button class="ai-tab-btn active" onclick="switchAITab('summary', event)">
+                        📋 Summary
+                    </button>
+                    <button class="ai-tab-btn" onclick="switchAITab('detailed', event)">
+                        📖 Full Analysis
+                    </button>
+                </div>
+                
+                <!-- Summary Tab -->
+                <div id="aiSummaryTab" class="ai-tab-content active">
+                    <div class="ai-content">
+                        <div class="ai-section">
+                            <h5>📊 Summary</h5>
+                            <p>${aiResults.summary || 'AI analysis of your code...'}</p>
+                        </div>
+                        
+                        <div class="ai-section">
+                            <h5>💡 Key Insights</h5>
+                            <ul>
+                                ${aiResults.insights ? aiResults.insights.map(insight => `<li>${insight}</li>`).join('') : '<li>Analyzing...</li>'}
+                            </ul>
+                        </div>
+                        
+                        <div class="ai-section">
+                            <h5>🔧 Suggestions</h5>
+                            <p>${aiResults.suggestions || 'AI-powered suggestions...'}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Full Analysis Tab -->
+                <div id="aiDetailedTab" class="ai-tab-content">
+                    <div class="ai-content">
+                        ${aiResults.sections && aiResults.sections.length > 0 ? 
+                            aiResults.sections.map(section => `
+                                <div class="ai-detailed-section">
+                                    <h4 class="ai-section-title">
+                                        <span class="section-emoji">${section.emoji}</span>
+                                        ${section.title}
+                                    </h4>
+                                    <div class="ai-section-content">
+                                        <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.8; color: #e0e0e0; font-size: 14px; margin: 0; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 8px;">${section.content}</pre>
+                                    </div>
+                                </div>
+                            `).join('')
+                        : `
+                            <div class="ai-full-explanation">
+                                <div class="ai-explanation-content">
+                                    <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.8; color: #e0e0e0; font-size: 14px;">${aiResults.response || 'No explanation available'}</pre>
+                                </div>
+                            </div>
+                        `}
+                    </div>
+                </div>
+        `;
+        
+        container.innerHTML = html;
+    }
+
+
+    // Format AI section content for better display
+    function formatAIContent(content) {
+        if (!content) return '';
+        
+        let formatted = content.trim();
+        
+        // Remove excessive whitespace
+        formatted = formatted.replace(/\n\s+\n/g, '\n\n'); // Multiple blank lines to double
+        formatted = formatted.replace(/^\s+/gm, ''); // Leading spaces on each line
+        
+        // Convert numbered lists with bold: "1. **Title**: Content"
+        formatted = formatted.replace(/(\d+)\.\s*\*\*([^*]+)\*\*:\s*/g, 
+            '<div style="margin: 12px 0;"><strong style="color: #5cafc0;">$1. $2:</strong> ');
+        
+        // Close the divs for numbered items (before next number or end)
+        formatted = formatted.replace(/(<\/strong>.*?)(?=\n\d+\.\s*\*\*|\n\n|$)/g, '$1</div>');
+        
+        // Convert bold text: **text**
+        formatted = formatted.replace(/\*\*([^*]+)\*\*/g, '<strong style="color: #fff;">$1</strong>');
+        
+        // Convert bullet points with dash
+        formatted = formatted.replace(/^\s*[-•]\s+/gm, '<span style="color: #5cafc0;">▸</span> ');
+        
+        // Convert line breaks to <br> but preserve double breaks as paragraphs
+        formatted = formatted.split('\n\n').map(para => {
+            return '<p style="margin: 10px 0; line-height: 1.8;">' + 
+                   para.replace(/\n/g, '<br>') + 
+                   '</p>';
+        }).join('');
+        
+        // Clean up any remaining markdown
+        formatted = formatted.replace(/`([^`]+)`/g, '<code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; color: #5cafc0;">$1</code>');
+        
+        return formatted;
+    }
+
+    // Switch between AI explanation tabs
+    function switchAITab(tabName, event) {
+        // Remove active class from all buttons
+        document.querySelectorAll('.ai-tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Add active class to clicked button
+        event.target.classList.add('active');
+        
+        // Hide all tab contents
+        document.querySelectorAll('.ai-tab-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        
+        // Show selected tab
+        if (tabName === 'summary') {
+            document.getElementById('aiSummaryTab').classList.add('active');
+        } else {
+            document.getElementById('aiDetailedTab').classList.add('active');
+        }
+    }
+
+</script>
+<script>
+
+function parseAndStyleAIFeedback(feedbackText) {
+    let styledHTML = feedbackText;
+
+       // If response doesn't start with header, add it
+    if (!styledHTML.trim().startsWith('WHAT YOUR CODE DOES:')) {
+        styledHTML = 'WHAT YOUR CODE DOES:\n' + styledHTML;
+    }
+    
+    styledHTML = styledHTML.replace(/###/g, '');
+    styledHTML = styledHTML.replace(/##/g, '');
+    styledHTML = styledHTML.replace(/#/g, '');
+    styledHTML = styledHTML.replace(/\*\*([^*]+?)\*\*/g, '<strong>$1</strong>');
+    styledHTML = styledHTML.replace(/\*/g, '');
+    styledHTML = styledHTML.replace(/RULES:[\s\S]*$/i, '');
+    // Reduce excessive spacing
+    styledHTML = styledHTML.replace(/\n\n\n+/g, '<br>');  // Triple+ newlines → single break
+    styledHTML = styledHTML.replace(/\n\n/g, '<br>');     // Double newlines → single break
+    styledHTML = styledHTML.replace(/\n/g, ' ');          // Single newlines → space
+    styledHTML = styledHTML.replace(/\n\n+/g, '<br><br>');
+    styledHTML = styledHTML.replace(/\n/g, ' ');
+   
+    const sections = [
+        { pattern: /WHAT YOUR CODE DOES:/gi, replacement: '<h2 class="feedback-section-what">WHAT YOUR CODE DOES:</h2>' },
+        { pattern: /GOOD PRACTICES FOUND:/gi, replacement: '<h2 class="feedback-section-good">GOOD PRACTICES FOUND:</h2>' },
+        { pattern: /ISSUES TO FIX:/gi, replacement: '<h2 class="feedback-section-issues">ISSUES TO FIX:</h2>' },
+        { pattern: /CRITICAL ERRORS:/gi, replacement: '<h3 class="feedback-section-critical">CRITICAL ERRORS:</h3>' },
+        { pattern: /STYLE IMPROVEMENTS:/gi, replacement: '<h3 class="feedback-section-style">STYLE IMPROVEMENTS:</h3>' },
+        { pattern: /LEARNING TIPS:/gi, replacement: '<h2 class="feedback-section-tips">LEARNING TIPS:</h2>' },
+        { pattern: /KEY TAKEAWAY:/gi, replacement: '<h2 class="feedback-section-takeaway">KEY TAKEAWAY:</h2>' }
+    ];
+    
+    sections.forEach(section => {
+        styledHTML = styledHTML.replace(section.pattern, section.replacement);
+    });
+    
+    // Convert numbered items like "1." or "2." to stay inline
+    styledHTML = styledHTML.replace(/\n(\d+\.)\s*/g, '<br><br>$1 ');
+    
+    // Convert bold headers to stay inline
+    styledHTML = styledHTML.replace(/\n(<strong>[^:]+:)/g, '<br><br>$1');
+    
+    // Double line breaks = new paragraph
+    styledHTML = styledHTML.replace(/\n\n+/g, '<br><br>');
+    
+    // Single line breaks = space (keep inline)
+    styledHTML = styledHTML.replace(/\n/g, ' ');
+    return `<div class="ai-feedback-container">${styledHTML}</div>`;
+
+     // Add default text if ISSUES TO FIX is empty
+    styledHTML = styledHTML.replace(
+    /(<h2 class="feedback-section-issues">ISSUES TO FIX:<\/h2>)\s*(<h[23])/g,
+    '$1<p style="margin: 10px 0;">See details below:</p>$2'
+    );
+
+    // Load history if URL has history parameter
+    window.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const historyId = urlParams.get('history');
+    
+        if (historyId) {
+            loadHistoryDetail(historyId);
+        }
+    });
+
+
+}
+
+// Load history detail when page loads
+    window.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const historyId = urlParams.get('history');
+        
+        if (historyId) {
+            loadHistoryDetail(historyId);
+        }
+    });
+
+    async function loadHistoryDetail(id) {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            alert('Please login to view history');
+            return;
+        }
+        
+        try {
+            const response = await fetch(`http://localhost:8000/api/history/${id}`, {
+                headers: {'Authorization': `Bearer ${token}`}
+            });
+            
+            if (response.ok) {
+                const data = await response.json();
+                console.log('History data loaded:', data);
+                
+                // Load code into the main editor
+                const editor = document.getElementById('mainCodeEditor');
+                if (editor) {
+                    editor.value = data.code;
+                    updateLineNumbers('main');
+                    console.log('Code loaded into editor');
+                } else {
+                    console.error('Editor element not found');
+                }
+                
+                // Display feedback if available
+                if (data.feedback && data.feedback.length > 0) {
+                    console.log('Displaying feedback:', data.feedback.length, 'items');
+                    
+                    displayResults({
+                        success: true,
+                        complexity: data.analysis_result.complexity || {},
+                        feedback: data.feedback
+                    });
+                } else {
+                    console.log('No feedback to display');
+                }
+                
+                // Switch to app page
+                showPage('app');
+                
+                // Scroll to results after a short delay
+                setTimeout(() => {
+                    const container = document.getElementById('resultsContainer');
+                    if (container) {
+                        container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 500);
+            } else {
+                console.error('Failed to load history');
+                alert('Failed to load history details');
+            }
+        } catch (error) {
+            console.error('Error loading history:', error);
+            alert('Error: ' + error.message);
+        }
+    }
+    
+</script>
+
+<script>
+// Dropdown Navigation Functions
+function toggleDropdown(navId, event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const navItem = document.getElementById(navId);
+    const allDropdowns = document.querySelectorAll('.dropdown-nav');
+    
+    // Close all other dropdowns
+    allDropdowns.forEach(item => {
+        if (item.id !== navId) {
+            item.classList.remove('open');
+        }
+    });
+    
+    // Toggle current dropdown
+    navItem.classList.toggle('open');
+}
+
+function closeDropdowns() {
+    document.querySelectorAll('.dropdown-nav').forEach(item => {
+        item.classList.remove('open');
+    });
+}
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', function(event) {
+    if (!event.target.closest('.dropdown-nav')) {
+        closeDropdowns();
+    }
+});
+
+// Toggle mobile menu
+function toggleMobileMenu() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('mobile-open');
+    
+    // Close all dropdowns when opening mobile menu
+    if (!navLinks.classList.contains('mobile-open')) {
+        closeDropdowns();
+    }
+}
+
+// Profile function (placeholder)
+function showProfile() {
+    alert('Profile page coming soon!');
+}
+
+// Settings function (placeholder)
+function showSettings() {
+    alert('Settings page coming soon!');
+}
+
+// Update the existing showPage function to close dropdowns and mobile menu
+const originalShowPage = window.showPage;
+window.showPage = function(page) {
+    closeDropdowns();
+    document.getElementById('navLinks').classList.remove('mobile-open');
+    if (originalShowPage) {
+        originalShowPage(page);
+    }
+};
+
+// Load username on page load
+window.addEventListener('DOMContentLoaded', function() {
+    const username = localStorage.getItem('username');
+    if (username) {
+        const userDisplay = document.getElementById('userDisplay');
+        if (userDisplay) {
+            userDisplay.textContent = username;
+        }
+    }
+});
+</script>
+</body>
+</html>

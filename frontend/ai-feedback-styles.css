@@ -1,0 +1,228 @@
+
+
+/* DevNest AI Feedback Styling */
+/* Add this to your frontend CSS to color-code feedback sections */
+/* FORCE COLORS - HIGH PRIORITY */
+.ai-feedback-container h2.feedback-section-what,
+.ai-feedback-container .feedback-section-what {
+    color: #60a5fa !important; /* Blue - force */
+    border-left: 4px solid #60a5fa !important;
+}
+
+.ai-feedback-container h2.feedback-section-good,
+.ai-feedback-container .feedback-section-good {
+    color: #4ade80 !important; /* Green - force */
+    border-left: 4px solid #4ade80 !important;
+}
+
+.ai-feedback-container h2.feedback-section-issues,
+.ai-feedback-container .feedback-section-issues {
+    color: #fb923c !important; /* Orange - force */
+    border-left: 4px solid #fb923c !important;
+}
+
+.ai-feedback-container h3.feedback-section-critical,
+.ai-feedback-container .feedback-section-critical {
+    color: #f87171 !important; /* Red - force */
+    border-left: 4px solid #f87171 !important;
+}
+
+.ai-feedback-container h3.feedback-section-style,
+.ai-feedback-container .feedback-section-style {
+    color: #fbbf24 !important; /* Yellow - force */
+    border-left: 4px solid #fbbf24 !important;
+}
+
+.ai-feedback-container h2.feedback-section-tips,
+.ai-feedback-container .feedback-section-tips {
+    color: #a78bfa !important; /* Purple - force */
+    border-left: 4px solid #a78bfa !important;
+}
+
+.ai-feedback-container h2.feedback-section-takeaway,
+.ai-feedback-container .feedback-section-takeaway {
+    color: #22d3ee !important; /* Cyan - force */
+    border-left: 4px solid #22d3ee !important;
+    font-style: italic !important;
+}
+.ai-feedback-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.8;
+    color: #e4e4e7; /* Light text for dark theme */
+    max-width: 900px;
+    padding: 20px;
+}
+
+/* Main section headers - each with semantic colors */
+.ai-feedback-container h2,
+.ai-feedback-container strong {
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 12px;
+    display: block;
+}
+
+/* "WHAT YOUR CODE DOES" - Blue (informational) */
+.feedback-section-what {
+    color: #60a5fa; /* Blue-400 */
+    border-left: 4px solid #60a5fa;
+    padding-left: 12px;
+    margin-bottom: 12px;
+}
+
+/* "GOOD PRACTICES FOUND" - Green (positive) */
+.feedback-section-good {
+    color: #4ade80; /* Green-400 */
+    border-left: 4px solid #4ade80;
+    padding-left: 12px;
+    margin-bottom: 12px;
+}
+
+/* "ISSUES TO FIX" - Orange (warning) */
+.feedback-section-issues {
+    color: #fb923c; /* Orange-400 */
+    border-left: 4px solid #fb923c;
+    padding-left: 12px;
+    margin-bottom: 12px;
+}
+
+/* "CRITICAL ERRORS" - Red (danger) */
+.feedback-section-critical {
+    color: #f87171; /* Red-400 */
+    border-left: 4px solid #f87171;
+    padding-left: 12px;
+    margin-bottom: 12px;
+}
+
+/* "STYLE IMPROVEMENTS" - Yellow (improvement) */
+.feedback-section-style {
+    color: #fbbf24; /* Yellow-400 */
+    border-left: 4px solid #fbbf24;
+    padding-left: 12px;
+    margin-bottom: 12px;
+}
+
+/* "LEARNING TIPS" - Purple (educational) */
+.feedback-section-tips {
+    color: #a78bfa; /* Purple-400 */
+    border-left: 4px solid #a78bfa;
+    padding-left: 12px;
+    margin-bottom: 12px;
+}
+
+/* "KEY TAKEAWAY" - Cyan (summary) */
+.feedback-section-takeaway {
+    color: #22d3ee; /* Cyan-400 */
+    border-left: 4px solid #22d3ee;
+    padding-left: 12px;
+    margin-bottom: 12px;
+    font-style: italic;
+}
+
+/* Subsection styling */
+.ai-feedback-container h3 {
+    font-size: 1em;
+    font-weight: 600;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+/* Lists and bullet points */
+.ai-feedback-container ul {
+    margin-left: 20px;
+    margin-bottom: 16px;
+}
+
+.ai-feedback-container li {
+    margin-bottom: 12px;
+    line-height: 1.7;
+}
+
+/* Code blocks */
+.ai-feedback-container code {
+    background-color: #1e293b; /* Slate-800 */
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #94a3b8; /* Slate-400 */
+}
+
+.ai-feedback-container pre {
+    background-color: #1e293b; /* Slate-800 */
+    padding: 12px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 12px 0;
+}
+
+.ai-feedback-container pre code {
+    background: none;
+    padding: 0;
+}
+
+/* Before/After examples */
+.code-example {
+    margin: 12px 0;
+}
+
+.code-example-label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.code-example-before .code-example-label {
+    color: #f87171; /* Red for "Before" */
+}
+
+.code-example-after .code-example-label {
+    color: #4ade80; /* Green for "After" */
+}
+
+/* Spacing between sections */
+.feedback-section {
+    margin-bottom: 28px;
+}
+
+/* Paragraphs */
+.ai-feedback-container p {
+    margin-bottom: 14px;
+    line-height: 1.7;
+}
+
+/* Strong emphasis within text */
+.ai-feedback-container strong {
+    color: #f1f5f9; /* Lighter for emphasis */
+    font-weight: 600;
+}
+
+/* Links (if any) */
+.ai-feedback-container a {
+    color: #60a5fa;
+    text-decoration: none;
+    border-bottom: 1px solid #60a5fa;
+}
+
+.ai-feedback-container a:hover {
+    color: #93c5fd;
+    border-bottom-color: #93c5fd;
+}
+
+/* Reduce spacing between sections */
+.ai-feedback-container h2 {
+    margin-top: 20px !important;
+    margin-bottom: 10px !important;
+}
+
+.ai-feedback-container h3 {
+    margin-top: 15px !important;
+    margin-bottom: 8px !important;
+}
+
+.ai-feedback-container p {
+    margin-bottom: 10px !important;
+    line-height: 1.6 !important;
+}

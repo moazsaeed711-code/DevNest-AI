@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevNest AI - History</title>
+    <link rel="icon" type="favicon" href="C:\Users\Asus\Desktop\favicon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(web.jpg);
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: rgba(1, 3, 3, 0.575);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header h1 {
+            color: #96e2e7ab;
+            font-size: 28px;
+        }
+        
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 1rem 2.5rem;
+            border: none;
+            outline: none;
+            border-radius: 0.4em;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: rgb(0, 0, 0);
+            transition: 0.6s;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #5cafc0 0%, #4a9fb0 100%);
+            color: rgba(255, 255, 255, 0.692);
+            font-size: em;
+        }
+
+        .btn-primary:hover{
+            background: #789ba3;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+            background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+            color: rgb(4, 4, 38);
+        }
+
+            
+        .btn:active {
+            scale: 0.92;
+        }
+
+        .btn:hover {
+            background: #00a8cc;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+            background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+            color: rgb(4, 4, 38);
+        }
+
+        
+        .btn-secondary {
+            background: #e0e0e0a6;
+            color: #333;
+        }
+        
+        .btn-secondary:hover{
+            background: #00a8cc;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+            background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+            color: rgb(4, 4, 38);
+        }
+        
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .history-card {
+            background: rgba(6, 53, 56, 0.54);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        
+        .history-card:hover {
+            background: #025d718c;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        /* Compact header with date and total */
+        .history-header-compact {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(92, 175, 192, 0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 3px solid #5cafc0;
+        }
+
+        .history-date {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        
+        .history-total {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 4px 12px;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* Stats row - 3 boxes side by side */
+        .history-stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+
+        
+        .history-date {
+            color: #ffffff98;
+            font-size: 14px;
+        }
+        
+         .history-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .stat {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 10px 8px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-sizing: border-box;
+            min-width: 0;
+            text-align: center;
+        }
+
+        .stat:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .stat-icon {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .stat-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            align-items: center;
+        }
+        
+        .stat strong {
+            color: #000000;
+        }
+
+        .stat-number {
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+        }
+        
+        .stat-label {
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+        
+        /* Color coding for stats */
+        .stat-error {
+            border-left: 3px solid #ff6b6b;
+        }
+        
+        .stat-warning {
+            border-left: 3px solid #ff9f43;
+        }
+        
+        .stat-optimization {
+            border-left: 3px solid #51cf66;
+        }
+        
+        .code-preview {
+            background: #1e1e1e;
+            color: #00ffc3;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            max-height: 150px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .code-preview::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(transparent, #1e1e1e);
+        }
+        
+        .card-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 14px;
+            flex: 1;
+        }
+        
+        .btn-delete {
+            background: #ff4757;
+            color: white;
+        }
+        
+        .empty-state {
+            background: rgba(1, 3, 3, 0.61);
+            padding: 60px 40px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .empty-state h2 {
+            color: #f0f6f7;
+            margin-bottom: 15px;
+        }
+        
+        .empty-state p {
+            color: #d6d6d6;
+            margin-bottom: 25px;
+        }
+        
+        .loading {
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            padding: 50px;
+        }
+
+        .btn-delete:hover{
+            background: #ff6b81;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 71, 87, 0.3);
+            color: rgb(4, 4, 38);
+        }
+
+        .btn-delete:active {
+            scale: 0.92;
+        }
+
+        .btn-small:hover {
+            background: #00a8cc;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+            background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+            color: rgb(4, 4, 38);
+        }
+        
+        .btn-small:active {
+            scale: 0.92;
+        }
+
+        /* ============================================
+           TABS STYLING
+        ============================================ */
+        .tabs-container {
+            margin-bottom: 30px;
+        }
+        
+        .tabs-nav {
+            display: flex;
+            gap: 10px;
+            background: rgba(1, 3, 3, 0.575);
+            padding: 10px;
+            border-radius: 15px;
+        }
+        
+        .tab-btn {
+            flex: 1;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .tab-btn:hover {
+            background: rgba(0, 212, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(135deg, #5cafc0 0%, #4a9fb0 100%);
+            color: white;
+            border-color: #5cafc0;
+            box-shadow: 0 5px 20px rgba(92, 175, 192, 0.4);
+        }
+        
+        .tab-count {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .tab-btn.active .tab-count {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* AI Explanation Card Styling */
+        .history-card.ai-card {
+            background: rgba(138, 43, 226, 0.08);
+            border-left: 4px solid #8a2be2;
+        }
+        
+        .history-card.ai-card:hover {
+            background: rgba(138, 43, 226, 0.15);
+            border-left-color: #9d5bd2;
+        }
+        
+        .ai-badge {
+            background: linear-gradient(135deg, #8a2be2 0%, #9d5bd2 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .ai-topics {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .topic-tag {
+            background: rgba(138, 43, 226, 0.2);
+            color: #c299ff;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        
+        .ai-summary {
+            color: #e0e0e0;
+            font-size: 14px;
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Your Code History</h1>
+            <div class="header-buttons">
+                <button class="btn btn-delete" onclick="clearAllHistory()" style="background: #ff4757; color: white;">
+                     Clear All
+                </button>
+                <button class="btn btn-primary" onclick="window.location.href='DevNest AI.htm?page=app'">
+                     Back to Editor
+                </button>
+                <button class="btn btn-secondary" onclick="logout()">
+                     Logout
+                </button>
+            </div>
+        </div>
+        
+         <!-- Tabs Navigation -->
+        <div class="tabs-container">
+            <div class="tabs-nav">
+                <button class="tab-btn active" onclick="switchTab('analysis', event)">
+                    📊 Code Analysis
+                    <span class="tab-count" id="analysisCount">0</span>
+                </button>
+                <button class="tab-btn" onclick="switchTab('ai', event)">
+                    🤖 AI Explanations
+                    <span class="tab-count" id="aiCount">0</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Loading State -->
+        <div id="loading" class="loading">
+            Loading your history...
+        </div>
+        
+        <!-- Analysis Tab Content -->
+        <div id="analysisTab" class="tab-content active">
+            <div id="analysisGrid" class="history-grid" style="display: none;">
+                <!-- Analysis history cards -->
+            </div>
+            
+            <div id="analysisEmpty" class="empty-state" style="display: none;">
+                <h2>📭 No Analysis History</h2>
+                <p>Start analyzing code to build your history!</p>
+                <button class="btn btn-primary" onclick="window.location.href='DevNest AI.htm'">
+                    Start Analyzing
+                </button>
+            </div>
+        </div>
+        
+        <!-- AI Explanations Tab Content -->
+        <div id="aiTab" class="tab-content">
+            <div id="aiGrid" class="history-grid" style="display: none;">
+                <!-- AI explanation cards -->
+            </div>
+            
+            <div id="aiEmpty" class="empty-state" style="display: none;">
+                <h2>🤖 No AI Explanations</h2>
+                <p>Use AI Explanation feature to get insights about your code!</p>
+                <button class="btn btn-primary" onclick="window.location.href='DevNest AI.htm'">
+                    Try AI Explanation
+                </button>
+            </div>
+        </div>
+       
+    </div>
+    
+    <script>
+    const API_URL = 'http://localhost:8000';
+    let currentTab = 'analysis';
+    
+    // Switch between tabs
+    function switchTab(tabName, event) {
+        currentTab = tabName;
+        
+        // Update tab buttons
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.closest('.tab-btn').classList.add('active');
+        
+        // Update tab content
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        if (tabName === 'analysis') {
+            document.getElementById('analysisTab').classList.add('active');
+        } else {
+            document.getElementById('aiTab').classList.add('active');
+        }
+    }
+    
+    async function loadHistory() {
+        console.log("🔵 HISTORY: Starting to load...");
+        
+        const token = localStorage.getItem('token');
+        console.log("🔵 HISTORY: Token exists:", !!token);
+        
+        if (!token) {
+            window.location.href = 'login.html';
+            return;
+        }
+        
+        try {
+            console.log("🔵 HISTORY: Fetching from API...");
+            
+            // Load both analysis and AI history
+            const [analysisResponse, aiResponse] = await Promise.all([
+                fetch(`${API_URL}/api/history`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                }),
+                fetch(`${API_URL}/api/ai-history`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                })
+            ]);
+            
+            console.log("🔵 HISTORY: Analysis response status:", analysisResponse.status);
+            console.log("🔵 HISTORY: AI response status:", aiResponse.status);
+            
+            // Handle responses gracefully (allow 500 errors to pass through)
+            let analysisData = { history: [] };
+            let aiData = { history: [] };
+            
+            if (analysisResponse.ok) {
+                analysisData = await analysisResponse.json();
+            } else if (analysisResponse.status === 401) {
+                localStorage.removeItem('token');
+                window.location.href = 'login.html';
+                return;
+            } else {
+                console.error('Analysis history error:', analysisResponse.status);
+            }
+            
+            if (aiResponse.ok) {
+                aiData = await aiResponse.json();
+            } else if (aiResponse.status === 401) {
+                localStorage.removeItem('token');
+                window.location.href = 'login.html';
+                return;
+            } else {
+                console.error('AI history error:', aiResponse.status);
+            }
+        
+            
+            console.log("🔵 HISTORY: Analysis data:", analysisData);
+            console.log("🔵 HISTORY: AI data:", aiData);
+            console.log("🔵 HISTORY: Analysis count:", analysisData.history?.length);
+            console.log("🔵 HISTORY: AI count:", aiData.history?.length);
+            
+            displayAnalysisHistory(analysisData.history || []);
+            displayAIHistory(aiData.history || []);
+            
+            // Update counts
+            document.getElementById('analysisCount').textContent = analysisData.history?.length || 0;
+            document.getElementById('aiCount').textContent = aiData.history?.length || 0;
+            
+            console.log("✅ HISTORY: Loading complete!");
+            
+        } catch (error) {
+            console.error('❌ HISTORY ERROR:', error);
+            document.getElementById('loading').textContent = 'Error loading history';
+        } finally {
+            document.getElementById('loading').style.display = 'none';
+        }
+    }
+    
+    function displayAnalysisHistory(history) {
+        const grid = document.getElementById('analysisGrid');
+        const empty = document.getElementById('analysisEmpty');
+        
+        if (history.length === 0) {
+            empty.style.display = 'block';
+            return;
+        }
+        
+        grid.style.display = 'grid';
+        grid.innerHTML = '';
+        
+        history.forEach(entry => {
+            console.log('📝 Creating card for entry ID:', entry.id, 'Type:', typeof entry.id);
+
+            const date = new Date(entry.created_at);
+            const formattedDate = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+            
+            const card = document.createElement('div');
+            card.className = 'history-card';
+            card.innerHTML = `
+                <div class="history-header-compact">
+                    <div class="history-date">📅 ${formattedDate}</div>
+                    <div class="history-total">📊 ${entry.analysis_result.total_feedback || 0} cards</div>
+                </div>
+                
+                <div class="history-stats-row">
+                    <div class="stat stat-error">
+                        <div class="stat-icon">🔴</div>
+                        <div class="stat-content">
+                            <div class="stat-number">${entry.analysis_result.errors || 0}</div>
+                            <div class="stat-label">Errors</div>
+                        </div>
+                    </div>
+                    <div class="stat stat-warning">
+                        <div class="stat-icon">🟠</div>
+                        <div class="stat-content">
+                            <div class="stat-number">${entry.analysis_result.warnings || 0}</div>
+                            <div class="stat-label">Warnings</div>
+                        </div>
+                    </div>
+                    <div class="stat stat-optimization">
+                        <div class="stat-icon">🟢</div>
+                        <div class="stat-content">
+                            <div class="stat-number">${entry.analysis_result.optimizations || 0}</div>
+                            <div class="stat-label">Optimizations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="code-preview">
+                    <pre>${escapeHtml(entry.code.substring(0, 200))}</pre>
+                </div>
+                
+                <div class="card-actions">
+                    <button class="btn btn-primary btn-small" onclick="viewAnalysisDetail(${entry.id})">
+                        👁️ View Details
+                    </button>
+                    <button class="btn btn-delete btn-small" onclick="deleteAnalysisEntry(${entry.id}, event)">
+                        🗑️ Delete
+                    </button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+    
+    function displayAIHistory(history) {
+        const grid = document.getElementById('aiGrid');
+        const empty = document.getElementById('aiEmpty');
+        
+        if (history.length === 0) {
+            empty.style.display = 'block';
+            return;
+        }
+        
+        grid.style.display = 'grid';
+        grid.innerHTML = '';
+        
+        history.forEach(entry => {
+            const date = new Date(entry.created_at);
+            const formattedDate = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+            
+            const topics = entry.topics ? entry.topics.split(',').map(t => t.trim()).filter(t => t) : [];
+            
+            const card = document.createElement('div');
+            card.className = 'history-card ai-card';
+            card.innerHTML = `
+                <div class="history-header">
+                    <div class="ai-badge">🤖 AI EXPLANATION</div>
+                    <div class="history-date">📅 ${formattedDate}</div>
+                </div>
+                
+                <div class="ai-summary">
+                    ${escapeHtml(entry.code_summary || 'AI Code Explanation')}
+                </div>
+                
+                ${topics.length > 0 ? `
+                <div class="ai-topics">
+                    ${topics.map(topic => `<span class="topic-tag">🔹 ${escapeHtml(topic)}</span>`).join('')}
+                </div>
+                ` : ''}
+                
+                <div class="code-preview">
+                    <pre>${escapeHtml(entry.code.substring(0, 150))}</pre>
+                </div>
+                
+                <div class="card-actions">
+                    <button class="btn btn-primary btn-small" onclick="event.stopPropagation(); viewAIDetail(${entry.id}); return false;">
+                        🧠 View Explanation
+                    </button>
+                    <button class="btn btn-delete btn-small" onclick="deleteAIEntry(${entry.id}, event)">
+                        🗑️ Delete
+                    </button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+    
+    function viewAnalysisDetail(id) {
+        window.location.href = 'DevNest AI.htm?history=' + id;
+    }
+    
+    function viewAIDetail(id) {
+        const url = 'DevNest AI.htm?ai-history=' + id;
+        console.log('🔵 Full URL:', window.location.origin + '/' + url);
+        window.location.href = url;
+    }
+    
+    async function deleteAnalysisEntry(id, event) {
+        console.log('🔍 Delete Analysis - ID type:', typeof id, 'ID value:', id);
+
+        if (!confirm('Delete this analysis?')) return;
+        
+        const token = localStorage.getItem('token');
+        try {
+            const response = await fetch(`${API_URL}/api/history/${id}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            
+            if (response.ok) {
+                const card = event.target.closest('.history-card');
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    card.remove();
+                    const grid = document.getElementById('analysisGrid');
+                    if (grid.children.length === 0) {
+                        grid.style.display = 'none';
+                        document.getElementById('analysisEmpty').style.display = 'block';
+                    }
+                    updateCount('analysis');
+                }, 300);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error deleting entry');
+        }
+    }
+    
+    async function deleteAIEntry(id, event) {
+        if (!confirm('Delete this AI explanation?')) return;
+        
+        const token = localStorage.getItem('token');
+        try {
+            const response = await fetch(`${API_URL}/api/ai-history/${id}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            
+            if (response.ok) {
+                const card = event.target.closest('.history-card');
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    card.remove();
+                    const grid = document.getElementById('aiGrid');
+                    if (grid.children.length === 0) {
+                        grid.style.display = 'none';
+                        document.getElementById('aiEmpty').style.display = 'block';
+                    }
+                    updateCount('ai');
+                }, 300);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error deleting entry');
+        }
+    }
+    
+    function updateCount(type) {
+        const grid = document.getElementById(type === 'analysis' ? 'analysisGrid' : 'aiGrid');
+        const count = grid.children.length;
+        document.getElementById(type === 'analysis' ? 'analysisCount' : 'aiCount').textContent = count;
+    }
+    
+    async function clearAllHistory() {
+        if (!confirm('⚠️ Delete ALL history (Analysis + AI)?')) return;
+        if (!confirm('🚨 FINAL WARNING: Cannot be undone!')) return;
+        
+        const token = localStorage.getItem('token');
+        try {
+            await Promise.all([
+                fetch(`${API_URL}/api/history/clear-all`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                }),
+                fetch(`${API_URL}/api/ai-history/clear-all`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                })
+            ]);
+            
+            location.reload();
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error clearing history');
+        }
+    }
+    
+    function logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+        window.location.href = 'login.html';
+    }
+    
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+    
+    // Load history on page load
+    loadHistory();
+   
+    </script>
+</body>
+</html>

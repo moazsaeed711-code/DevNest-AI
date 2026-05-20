@@ -1,0 +1,92 @@
+prompt = f"""<|im_start|>system
+You are a Python code analyzer. You MUST follow the exact format. Never put errors in the "GOOD PRACTICES FOUND" section.
+<|im_end|>
+<|im_start|>user
+Analyze this Python code:
+```python
+{code}
+```
+
+Follow this EXACT format. Do NOT mix up or skip sections:
+
+WHAT YOUR CODE DOES:
+[Explain what the code attempts to do in 2-3 sentences]
+
+GOOD PRACTICES FOUND:
+[ONLY list POSITIVE things the code does well. If nothing good, write "The code structure is clear"]
+
+ISSUES TO FIX:
+
+CRITICAL ERRORS:
+[List ALL errors and problems here. NOT in good practices section]
+
+STYLE IMPROVEMENTS:
+[Suggest improvements or write "Code can be improved with error handling"]
+
+LEARNING TIPS:
+- [One practical tip about error handling or best practices]
+
+KEY TAKEAWAY:
+[One sentence about what to learn from this code]
+
+CRITICAL RULES:
+1. NEVER put errors in "GOOD PRACTICES FOUND" section
+2. Put ALL problems under "CRITICAL ERRORS" or "ISSUES TO FIX"
+3. "GOOD PRACTICES" = only positive things
+4. Complete ALL sections
+5. NO line breaks within numbered items
+<|im_end|>
+<|im_start|>assistant
+
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // Parse structured sections from AI response
+                 const sectionPatterns = [
+                    { emoji: '🎯', title: 'WHAT YOUR CODE DOES', key: 'what', alt: 'WHAT YOUR CODE DOES' },
+                    { emoji: '⚠️', title: 'ISSUES TO FIX', key: 'issues', alt: 'ISSUES TO FIX' },
+                    { emoji: '💡', title: 'STYLE IMPROVEMENTS', key: 'style', alt: 'STYLE IMPROVEMENTS' },
+                    { emoji: '🔧', title: 'HOW TO FIX', key: 'howto', alt: 'HOW TO FIX' },
+                    { emoji: '📚', title: 'LEARNING TIPS', key: 'learning', alt: 'LEARNING TIPS' },
+                    { emoji: '🔑', title: 'KEY TAKEAWAY', key: 'takeaway', alt: 'KEY TAKEAWAY' },
+                    { emoji: '⚠️', title: 'CRITICAL RULES', key: 'rules', alt: 'CRITICAL RULES' },
+                    { emoji: '✅', title: 'GOOD PRACTICES FOUND', key: 'good', alt: 'GOOD PRACTICES FOUND' }
+                ];
+                
+                // Extract each section (try with and without emoji)
+                sectionPatterns.forEach(pattern => {
+                    // Try with emoji first
+                    let regex = new RegExp(`${pattern.emoji}\\s*${pattern.title}[:\\s]+([\\s\\S]*?)(?=\\n\\n|${sectionPatterns.map(p => `(${p.emoji}\\s*${p.title}|${p.alt})`).join('|')}|$)`, 'i');
+                    let match = explanationText.match(regex);
+                    
+                    // If no match, try without emoji
+                    if (!match) {
+                        regex = new RegExp(`${pattern.alt}[:\\s]+([\\s\\S]*?)(?=\\n\\n|${sectionPatterns.map(p => `(${p.emoji}\\s*${p.title}|${p.alt})`).join('|')}|$)`, 'i');
+                        match = explanationText.match(regex);
+                    }
+                    
+                    if (match && match[1]) {
+                        result.sections.push({
+                            emoji: pattern.emoji,
+                            title: pattern.title,
+                            content: match[1].trim(),
+                            key: pattern.key
+                        });
+                    }
+                });

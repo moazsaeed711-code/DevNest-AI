@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevNest AI - Documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #5cafc0;
+            --primary-dark: #4a9fb0;
+            --secondary: #ff6b6b;
+            --success: #51cf66;
+            --warning: #ffd93d;
+            --dark: #0f2027;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .bg-animation span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: rgba(92, 175, 192, 0.1);
+            animation: float 25s infinite;
+            border-radius: 50%;
+        }
+        
+        .bg-animation span:nth-child(1) { left: 25%; animation-delay: 0s; }
+        .bg-animation span:nth-child(2) { left: 10%; animation-delay: 2s; }
+        .bg-animation span:nth-child(3) { left: 70%; animation-delay: 4s; }
+        .bg-animation span:nth-child(4) { left: 40%; animation-delay: 6s; }
+        .bg-animation span:nth-child(5) { left: 65%; animation-delay: 8s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) scale(0); }
+            50% { transform: translateY(-100vh) scale(1.5); }
+        }
+        
+        /* Navigation */
+        nav {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), #00d4ff);
+            -webkit-text-fill-color: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .nav-btn {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: white;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .nav-btn.primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border: none;
+        }
+        
+        /* Container */
+        .docs-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 1.5rem;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .search-box {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .sidebar h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1rem;
+        }
+        
+        .sidebar-nav {
+            list-style: none;
+        }
+        
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        .sidebar-nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .sidebar-nav a.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+        
+        .sidebar-nav i {
+            font-size: 1.1rem;
+            width: 20px;
+        }
+        
+        /* Main Content */
+        .content {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .page-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, var(--primary));
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Sections */
+        .section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+        
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .section h3 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .section p {
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+        
+        /* Feature Cards */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 40px rgba(92, 175, 192, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: white;
+        }
+        
+        .feature-desc {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        
+        /* Code Block */
+        .code-block {
+            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+            overflow-x: auto;
+        }
+        
+        .code-block pre {
+            color: #00ff88;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .code-label {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Info Boxes */
+        .info-box {
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid;
+        }
+        
+        .info-box.tip {
+            background: rgba(81, 207, 102, 0.1);
+            border-color: var(--success);
+        }
+        
+        .info-box.warning {
+            background: rgba(255, 217, 61, 0.1);
+            border-color: var(--warning);
+        }
+        
+        .info-box.note {
+            background: rgba(92, 175, 192, 0.1);
+            border-color: var(--primary);
+        }
+        
+        .info-box-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Steps */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .step {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .step:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .step-content h4 {
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+        
+        .step-content p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+        
+        /* Quick Links */
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .quick-link {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .quick-link:hover {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            transform: translateY(-5px);
+        }
+        
+        .quick-link i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .docs-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+            }
+            
+            .content {
+                padding: 2rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo" onclick="window.location.href='DevNest AI.htm'">
+                <i class="fas fa-code"></i>
+                DevNest AI
+            </div>
+            <div class="nav-links">
+                <a href="DevNest AI.htm" class="nav-btn primary">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="history.html" class="nav-btn">
+                    <i class="fas fa-history"></i> History
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="docs-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchDocs" placeholder="Search docs...">
+            </div>
+            
+            <h3>Navigation</h3>
+            <ul class="sidebar-nav">
+                <li><a href="#getting-started" class="active"><i class="fas fa-rocket"></i> Getting Started</a></li>
+                <li><a href="#features"><i class="fas fa-star"></i> Features</a></li>
+                <li><a href="#how-it-works"><i class="fas fa-cogs"></i> How It Works</a></li>
+                <li><a href="#code-quality"><i class="fas fa-chart-line"></i> Code Quality</a></li>
+                <li><a href="#ai-explanations"><i class="fas fa-brain"></i> AI Explanations</a></li>
+                <li><a href="#error-types"><i class="fas fa-bug"></i> Error Types</a></li>
+                <li><a href="#best-practices"><i class="fas fa-lightbulb"></i> Best Practices</a></li>
+                <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Page Header -->
+            <div class="page-header fade-in">
+                <h1>📚 Documentation</h1>
+                <p>Everything you need to master Python with DevNest AI</p>
+            </div>
+
+            <!-- Getting Started -->
+            <section id="getting-started" class="section fade-in">
+                <h2><i class="fas fa-rocket"></i> Getting Started</h2>
+                <p>DevNest AI is your intelligent Python code analysis companion designed specifically for beginners. Let's get you started in just a few simple steps!</p>
+                
+                <div class="info-box tip">
+                    <div class="info-box-title">💡 Perfect For:</div>
+                    <p>Students learning Python, developers improving code quality, educators teaching programming, and anyone wanting to write better Python code.</p>
+                </div>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Write or Paste Your Code</h4>
+                            <p>Enter your Python code in the editor on the main page. You can type directly or paste existing code.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Click "Analyze Code"</h4>
+                            <p>Our system will instantly scan your code for errors, warnings, and optimization opportunities.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Review Feedback Cards</h4>
+                            <p>Get color-coded feedback: red for errors, orange for warnings, blue for conventions, and green for optimizations.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Get AI Explanations (Optional)</h4>
+                            <p>Click "AI Explanation" for detailed, beginner-friendly explanations of any issues found.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-label">Python</div>
+                    <pre># Example: Your first analysis
+def calculate_sum(numbers):
+    total = 0
+    for num in numbers:
+        total += num
+    return total
+
+result = calculate_sum([1, 2, 3, 4, 5])
+print(f'Sum: {result}')</pre>
+                </div>
+            </section>
+
+            <!-- Features -->
+            <section id="features" class="section fade-in">
+                <h2><i class="fas fa-star"></i> Features</h2>
+                <p>DevNest AI combines powerful analysis tools with AI-powered education to help you become a better Python developer.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <div class="feature-title">Smart Error Detection</div>
+                        <div class="feature-desc">Automatically finds syntax errors, undefined variables, import issues, and logic problems in your code.</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <div class="feature-title">Code Quality Metrics</div>
+                        <div class="feature-desc">Get instant feedback on code complexity, maintainability, and cyclomatic complexity with letter grades.</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <div class="feature-title">AI-Powered Explanations</div>
+                        <div class="feature-desc">Transform technical error messages into beginner-friendly explanations with examples and learning tips.</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <div class="feature-title">Optimization Suggestions</div>
+                        <div class="feature-desc">Learn Pythonic patterns like list comprehensions, enumerate(), and context managers for cleaner code.</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📝</div>
+                        <div class="feature-icon">Style Checking</div>
+                        <div class="feature-desc">Ensure your code follows PEP 8 style guidelines with automatic convention checks.</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">💾</div>
+                        <div class="feature-title">History Tracking</div>
+                        <div class="feature-desc">Save and review your past analyses to track your learning progress over time.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How It Works -->
+            <section id="how-it-works" class="section fade-in">
+                <h2><i class="fas fa-cogs"></i> How It Works</h2>
+                <p>DevNest AI uses a multi-layered analysis approach to provide comprehensive feedback on your Python code.</p>
+
+                <h3>🔬 Analysis Pipeline</h3>
+                
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Code Parsing</h4>
+                            <p>Your code is parsed and analyzed for syntax correctness and structural issues.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Static Analysis (Pylint)</h4>
+                            <p>Professional-grade Pylint tool checks for errors, warnings, and PEP 8 violations.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Complexity Metrics (Radon)</h4>
+                            <p>Calculate cyclomatic complexity and maintainability index using Radon analyzer.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Pattern Recognition</h4>
+                            <p>Custom rule engine identifies optimization opportunities and anti-patterns.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>AI Enhancement (Optional)</h4>
+                            <p>Qwen2.5-Coder AI model generates educational explanations for detected issues.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box note">
+                    <div class="info-box-title">📌 Note</div>
+                    <p>All analysis happens in real-time. Your code is never stored permanently unless you save it to your history.</p>
+                </div>
+            </section>
+
+            <!-- Code Quality -->
+            <section id="code-quality" class="section fade-in">
+                <h2><i class="fas fa-chart-line"></i> Code Quality Metrics</h2>
+                <p>Understanding your code quality metrics helps you write more maintainable software.</p>
+
+                <h3>📈 Quality Grade (A-F)</h3>
+                <p>Based on cyclomatic complexity and maintainability index:</p>
+                <ul style="color: rgba(255,255,255,0.8); line-height: 2; margin-left: 2rem;">
+                    <li><strong style="color: #51cf66;">A:</strong> Excellent - Low complexity, highly maintainable</li>
+                    <li><strong style="color: #51cf66;">B:</strong> Good - Acceptable complexity, good maintainability</li>
+                    <li><strong style="color: #ffd93d;">C:</strong> Fair - Moderate complexity, needs improvement</li>
+                    <li><strong style="color: #ff9f43;">D:</strong> Poor - High complexity, difficult to maintain</li>
+                    <li><strong style="color: #ff6b6b;">F:</strong> Critical - Very high complexity, refactor needed</li>
+                </ul>
+
+                <h3>🔄 Cyclomatic Complexity</h3>
+                <p>Measures the number of independent paths through your code. Lower is better:</p>
+                <ul style="color: rgba(255,255,255,0.8); line-height: 2; margin-left: 2rem;">
+                    <li><strong>1-5:</strong> Simple, easy to test</li>
+                    <li><strong>6-10:</strong> Moderate complexity</li>
+                    <li><strong>11-20:</strong> Complex, consider refactoring</li>
+                    <li><strong>21+:</strong> Very complex, high risk</li>
+                </ul>
+
+                <h3>🛠️ Maintainability Index</h3>
+                <p>Composite score (0-100) based on code complexity, lines of code, and Halstead metrics:</p>
+                <ul style="color: rgba(255,255,255,0.8); line-height: 2; margin-left: 2rem;">
+                    <li><strong>80-100:</strong> Highly maintainable</li>
+                    <li><strong>60-79:</strong> Moderately maintainable</li>
+                    <li><strong>40-59:</strong> Difficult to maintain</li>
+                    <li><strong>0-39:</strong> Very difficult to maintain</li>
+                </ul>
+            </section>
+
+            <!-- AI Explanations -->
+            <section id="ai-explanations" class="section fade-in">
+                <h2><i class="fas fa-brain"></i> AI-Powered Explanations</h2>
+                <p>Our AI transforms technical jargon into educational content that helps you learn, not just fix.</p>
+
+                <h3>🎯 Three-Tab Interface</h3>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📋</div>
+                        <div class="feature-title">Explain Tab</div>
+                        <div class="feature-desc">What's wrong with your code and why it's a problem, explained in simple terms with real-world analogies.</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📚</div>
+                        <div class="feature-title">Learn Tab</div>
+                        <div class="feature-desc">Deeper educational content about the concept, common mistakes, and best practices.</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔧</div>
+                        <div class="feature-title">Fix Tab</div>
+                        <div class="feature-desc">Step-by-step instructions to fix the issue with before/after code examples.</div>
+                    </div>
+                </div>
+
+                <div class="info-box tip">
+                    <div class="info-box-title">💡 Pro Tip</div>
+                    <p>Use AI Explanations when you want to understand the "why" behind the feedback, not just the "what".</p>
+                </div>
+            </section>
+
+            <!-- Error Types -->
+            <section id="error-types" class="section fade-in">
+                <h2><i class="fas fa-bug"></i> Understanding Error Types</h2>
+                <p>DevNest categorizes feedback into five color-coded types for easy understanding.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card" style="border-left: 4px solid #ff6b6b;">
+                        <div class="feature-icon">🔴</div>
+                        <div class="feature-title">Errors (Critical)</div>
+                        <div class="feature-desc">Code will not run. Includes syntax errors, undefined variables, import errors, and attribute errors. Fix these first!</div>
+                    </div>
+                    
+                    <div class="feature-card" style="border-left: 4px solid #ff9f43;">
+                        <div class="feature-icon">🟠</div>
+                        <div class="feature-title">Warnings (Important)</div>
+                        <div class="feature-desc">Code runs but has issues. Includes unused imports, dangerous defaults, redefined builtins, and global variables.</div>
+                    </div>
+                    
+                    <div class="feature-card" style="border-left: 4px solid #51cf66;">
+                        <div class="feature-icon">🟢</div>
+                        <div class="feature-title">Optimizations</div>
+                        <div class="feature-desc">Make code faster and more Pythonic. Includes list comprehensions, enumerate(), isinstance(), and context managers.</div>
+                    </div>
+                    
+                    <div class="feature-card" style="border-left: 4px solid #5cafc0;">
+                        <div class="feature-icon">🔵</div>
+                        <div class="feature-title">Conventions (Style)</div>
+                        <div class="feature-desc">PEP 8 style violations. Includes naming conventions, missing docstrings, and line length limits.</div>
+                    </div>
+                    
+                    <div class="feature-card" style="border-left: 4px solid #a78bfa;">
+                        <div class="feature-icon">🟣</div>
+                        <div class="feature-title">Refactors</div>
+                        <div class="feature-desc">Code structure improvements. Includes unnecessary else clauses and better context manager usage.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Best Practices -->
+            <section id="best-practices" class="section fade-in">
+                <h2><i class="fas fa-lightbulb"></i> Best Practices</h2>
+                <p>Follow these guidelines to get the most out of DevNest AI and improve your Python skills.</p>
+
+                <h3>✅ Do's</h3>
+                <ul style="color: rgba(255,255,255,0.8); line-height: 2; margin-left: 2rem; margin-bottom: 2rem;">
+                    <li>Start with fixing <strong style="color: #ff6b6b;">errors</strong> first, then <strong style="color: #ff9f43;">warnings</strong></li>
+                    <li>Read the educational explanations to understand the "why"</li>
+                    <li>Apply optimizations to learn Pythonic patterns</li>
+                    <li>Use the history feature to track your progress</li>
+                    <li>Test small code snippets to learn specific concepts</li>
+                    <li>Compare "before" and "after" code in examples</li>
+                </ul>
+
+                <h3>❌ Don'ts</h3>
+                <ul style="color: rgba(255,255,255,0.8); line-height: 2; margin-left: 2rem;">
+                    <li>Don't ignore errors to focus on style - fix critical issues first</li>
+                    <li>Don't blindly apply suggestions without understanding them</li>
+                    <li>Don't optimize prematurely - readable code first, then optimize</li>
+                    <li>Don't submit code with sensitive data (passwords, API keys)</li>
+                    <li>Don't rely solely on AI - use it as a learning tool</li>
+                </ul>
+
+                <div class="info-box warning">
+                    <div class="info-box-title">⚠️ Security Reminder</div>
+                    <p>Never paste code containing passwords, API keys, personal data, or sensitive information. Always sanitize your code before analysis.</p>
+                </div>
+            </section>
+
+            <!-- FAQ -->
+            <section id="faq" class="section fade-in">
+                <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+
+                <h3>Q: Is my code stored or shared?</h3>
+                <p style="color: rgba(255,255,255,0.8); margin-bottom: 2rem;">Your code is analyzed in real-time and only saved if you explicitly save it to your history. Saved analyses are private to your account and never shared.</p>
+
+                <h3>Q: What Python versions are supported?</h3>
+                <p style="color: rgba(255,255,255,0.8); margin-bottom: 2rem;">DevNest AI supports Python 3.6+ with best support for Python 3.8-3.11.</p>
+
+                <h3>Q: How accurate is the AI explanation?</h3>
+                <p style="color: rgba(255,255,255,0.8); margin-bottom: 2rem;">AI explanations are generated by Qwen2.5-Coder, a state-of-the-art code model. While highly accurate, always verify important information against official Python documentation.</p>
+
+                <h3>Q: Can I use DevNest AI for my homework?</h3>
+                <p style="color: rgba(255,255,255,0.8); margin-bottom: 2rem;">Yes! DevNest AI is designed as an educational tool. It helps you understand and fix your code, not write it for you.</p>
+
+                <h3>Q: Why do I see duplicate feedback cards?</h3>
+                <p style="color: rgba(255,255,255,0.8); margin-bottom: 2rem;">DevNest intelligently deduplicates similar convention violations (like naming) to show only the first occurrence. All errors and warnings are always shown.</p>
+
+                <h3>Q: How do I save my analysis?</h3>
+                <p style="color: rgba(255,255,255,0.8); margin-bottom: 2rem;">Your analyses are automatically saved to your account history after logging in. Access them anytime from the History page.</p>
+
+                <div class="info-box note">
+                    <div class="info-box-title">📌 Still Have Questions?</div>
+                    <p>Contact us or check our community forums for more help and tips.</p>
+                </div>
+            </section>
+
+            <!-- Quick Links -->
+            <div class="quick-links">
+                <a href="DevNest AI.htm" class="quick-link">
+                    <i class="fas fa-play-circle"></i>
+                    <div>Start Analyzing</div>
+                </a>
+                <a href="history.html" class="quick-link">
+                    <i class="fas fa-history"></i>
+                    <div>View History</div>
+                </a>
+                <a href="#getting-started" class="quick-link">
+                    <i class="fas fa-rocket"></i>
+                    <div>Quick Start</div>
+                </a>
+                <a href="#faq" class="quick-link">
+                    <i class="fas fa-question-circle"></i>
+                    <div>Get Help</div>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Smooth scrolling for sidebar links
+        document.querySelectorAll('.sidebar-nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.sidebar-nav a').forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Smooth scroll to section
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchDocs');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const sections = document.querySelectorAll('.section');
+            
+            sections.forEach(section => {
+                const text = section.textContent.toLowerCase();
+                if (text.includes(searchTerm) || searchTerm === '') {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+
+        // Add fade-in animation to sections on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Update active link based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            const scrollPosition = window.scrollY + 150;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    document.querySelectorAll('.sidebar-nav a').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

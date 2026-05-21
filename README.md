@@ -16,7 +16,8 @@ Fix — suggests how to correct the code
 
 Built as a graduation senior project at Arab Open University, Bahrain.
 
-Screenshots
+
+Screenshots:
 Home Page
 <img width="1915" height="862" alt="Home Page" src="https://github.com/user-attachments/assets/84f603af-28b6-40c1-90f3-da0732f59eb9" />
 
@@ -41,25 +42,34 @@ Login & Register
 
 
 Tech Stack
-LayerTechnologyBackendFastAPI, SQLAlchemyDatabaseSQLiteFrontendHTML, CSS, JavaScriptAI ModelOllama (Qwen2.5-Coder)AnalysisPylint, Radon, AST pattern matchingAuthJWT-based authentication
+---------------------------------------------------
+Layer       |   Technology
+---------------------------------------------------
+Backend     |   FastAPI, SQLAlchemy
+Database    |   SQLite
+Frontend    |   HTML, CSS, JavaScript
+AI Model    |   Ollama (Qwen2.5-Coder)
+Analysis    |   Pylint, Radon, AST pattern matching
+Auth        |   JWT-based authentication
+----------------------------------------------------
 
 Features
+-107+ error codes with beginner-friendly explanations
+-Real-time code analysis with grade, cyclomatic complexity, and maintainability score
+-Three interactive tabs: Explain, Learn, Fix
+-Personal code history with 100+ saved analyses
+-User authentication and session management
+-Cyberpunk-themed responsive UI
 
-107+ error codes with beginner-friendly explanations
-Real-time code analysis with grade, cyclomatic complexity, and maintainability score
-Three interactive tabs: Explain, Learn, Fix
-Personal code history with 100+ saved analyses
-User authentication and session management
-Cyberpunk-themed responsive UI
 
 
-How to Run Locally
-Requirements
+How to Run Locally:
 
-Python 3.10+
-Ollama installed and running with Qwen2.5-Coder model
+Requirements:
+-Python 3.10+
+-Ollama installed and running with Qwen2.5-Coder model
 
-Steps
+Steps:
 1. Clone the repository
 git clone https://github.com/moazsaeed711-code/DevNest-AI.git
 cd DevNest-AI
@@ -76,24 +86,28 @@ uvicorn main:app --reload
 6. Open the frontend
 Open frontend/index.html in your browser
 
-Creating an Account & Saving History
+
+
+
+
+Creating an Account & Saving History:
 DevNest includes a full user authentication system so you can save and revisit your code analysis sessions.
 To register:
 
-Open the app and click Register on the login page
-Enter a username, email, and password
-Click Create Account
+-Open the app and click Register on the login page
+-Enter a username, email, and password
+-Click Create Account
 
 To sign in:
 
-Enter your username and password on the login page
-Click Sign In
+-nter your username and password on the login page
+-Click Sign In
 
 To view your history:
 
-Click History in the navigation bar
-Switch between Code Analysis and AI Explanations tabs
-Click View Details on any saved session to revisit it
+-Click History in the navigation bar
+-Switch between Code Analysis and AI Explanations tabs
+-Click View Details on any saved session to revisit it
 
 
 Your analysis history is saved automatically every time you analyze code while logged in.
@@ -116,4 +130,4 @@ Author
 Moaz Mahmoud Saeed
 B.Sc. Information Technology & Computing
 Arab Open University, Bahrain
-LinkedIn
+LinkedIn: www.linkedin.com/in/moaz-mahmoud-58874b352

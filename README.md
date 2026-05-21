@@ -34,6 +34,7 @@ AI Explanation History
 
 
 Login & Register
+
 <img width="433" height="540" alt="Login Page" src="https://github.com/user-attachments/assets/4ef90c96-c5f5-42c1-bc90-41862133ce9b" />
 
 <img width="394" height="657" alt="Resgister Page" src="https://github.com/user-attachments/assets/4f724e13-2554-44fc-b45a-1ed3aa095bbe" />

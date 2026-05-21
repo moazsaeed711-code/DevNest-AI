@@ -7,6 +7,7 @@ understand, learn from, and fix errors in their Python code.
 
 
 What is DevNest?
+
 DevNest analyzes Python code and provides beginner-friendly feedback
 through three modes:
 
@@ -20,6 +21,7 @@ Built as a graduation senior project at Arab Open University, Bahrain.
 
 
 Screenshots:
+
 Home Page
 <img width="1915" height="862" alt="Home Page" src="https://github.com/user-attachments/assets/84f603af-28b6-40c1-90f3-da0732f59eb9" />
 
@@ -56,11 +58,17 @@ Auth        |   JWT-based authentication
 ----------------------------------------------------
 
 Features
+
 -107+ error codes with beginner-friendly explanations
+
 -Real-time code analysis with grade, cyclomatic complexity, and maintainability score
+
 -Three interactive tabs: Explain, Learn, Fix
+
 -Personal code history with 100+ saved analyses
+
 -User authentication and session management
+
 -Cyberpunk-themed responsive UI
 
 
@@ -68,10 +76,12 @@ Features
 How to Run Locally:
 
 Requirements:
+
 -Python 3.10+
 -Ollama installed and running with Qwen2.5-Coder model
 
 Steps:
+
 1. Clone the repository
 git clone https://github.com/moazsaeed711-code/DevNest-AI.git
 cd DevNest-AI
@@ -93,7 +103,9 @@ Open frontend/index.html in your browser
 
 
 Creating an Account & Saving History:
+
 DevNest includes a full user authentication system so you can save and revisit your code analysis sessions.
+
 To register:
 
 -Open the app and click Register on the login page
@@ -139,8 +151,12 @@ DevNest-AI/
 
 └── screenshots/
 
-Author
+Author:
+
 Moaz Mahmoud Saeed
+
 B.Sc. Information Technology & Computing
+
 Arab Open University, Bahrain
+
 LinkedIn: www.linkedin.com/in/moaz-mahmoud-58874b352

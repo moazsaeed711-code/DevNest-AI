@@ -11,7 +11,9 @@ DevNest analyzes Python code and provides beginner-friendly feedback
 through three modes:
 
 Explain — understands what the error means in plain language
+
 Learn — teaches the concept behind the error
+
 Fix — suggests how to correct the code
 
 Built as a graduation senior project at Arab Open University, Bahrain.
@@ -114,16 +116,27 @@ Your analysis history is saved automatically every time you analyze code while l
 
 
 Project Structure
+
 DevNest-AI/
+
 ├── backend/
+
 │ ├── main.py
+
 │ ├── rule_engine.py
+
 │ ├── models.py
+
 │ └── requirements.txt
+
 ├── frontend/
+
 │ ├── index.html
+
 │ ├── analyzer.html
+
 │ └── assets/
+
 └── screenshots/
 
 Author
